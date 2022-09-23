@@ -5,12 +5,19 @@ from django.contrib.auth.models import AbstractUser
 class HashRecommend(models.Model):
     hash=models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.hash
+
 class AdminPlace(models.Model):
     name=models.CharField(max_length=50)
     description=models.TextField()
     category=models.CharField(max_length=20)
     scrap_cnt=models.IntegerField(default=0)
     thumbnail=models.ImageField()
+    hashtag=models.ForeignKey(HashRecommend, on_delete=models.CASCADE, null=True)
+    
+    def __str__(self):
+        return self.name
 
 class AdminPlacePhoto(models.Model):
     src = models.ImageField()

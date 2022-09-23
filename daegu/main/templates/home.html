@@ -20,41 +20,19 @@
     </div>
 
     <!--content-->
-    <section style="padding-top:7rem;">
-        <h1 class="content-text">#대구핫플🔥</h1>
-        <div style="padding:1.5rem;">
-            <div class="content-list"> <!--overflow-x:scroll;-->
-                <a href="{% url 'detail' %}"><img class="content-img" src="{% static 'img/image.png' %}"></a>
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-            </div>
-        </div>
-    </section>
-
+    {% for hash in hashs %}
+    <!-- style="padding-top:7rem;" -->
     <section>
-        <h1 class="content-text">#노을에 맥주 한 캔🍺</h1>
+        <h1 class="content-text">{{ hash.hash }}</h1>
         <div style="padding:1.5rem;">
             <div class="content-list"> <!--overflow-x:scroll;-->
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
+                {% for adminplace in hash.adminplace_set.all %}
+                <a href="{% url 'detail' %}"><img class="content-img" src="{{ adminplace.thumbnail.url }}"></a>
+                {% endfor %}
             </div>
         </div>
     </section>
-
-    <section>
-        <h1 class="content-text">#이런 곳도 있어? 숨겨진 명소</h1>
-        <div style="padding:1.5rem;">
-            <div class="content-list"> <!--overflow-x:scroll;-->
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-                <img class="content-img" src="{% static 'img/image.png' %}">
-            </div>
-        </div>
-    </section>
+    {% endfor %}
 
     <!--course-->
     <section style="padding-bottom:5rem;">
