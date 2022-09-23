@@ -117,11 +117,27 @@
 .text-title{
     font-size:20px; 
     font-weight:bold;
+    padding-top:0;
 }
 
 .text-content{
     font-size:15px; 
     padding-top:0.5rem;
+}
+
+.save-box{
+    padding-left:10rem;
+}
+
+.save-img{
+    height:1.5rem;
+}
+
+.save-text{
+    font-weight:bold; 
+    font-weight:10px; 
+    margin:0; 
+    font-size:10px;
 }
 
 .type-box{
