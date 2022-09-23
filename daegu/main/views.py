@@ -8,3 +8,6 @@ def main(request):
 def detail(request, adminplace_id):
     adminplace = AdminPlace.objects.get(pk=adminplace_id)
     return render(request, 'detail.html', {'adminplace':adminplace})
+
+def course(request):
+    return render(request, 'course.html')

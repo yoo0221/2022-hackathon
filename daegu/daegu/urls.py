@@ -24,4 +24,6 @@ urlpatterns = [
     path('', views.main, name="main"),
     path('detail/<int:adminplace_id>', views.detail, name="detail"),
     path('account/', include('account.urls')),
+    path('course/', views.course, name="course"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
