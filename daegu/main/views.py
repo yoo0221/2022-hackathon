@@ -6,3 +6,6 @@ def main(request):
 
 def detail(request):
     return render(request, 'detail.html')
+
+def course(request):
+    return render(request, 'course.html')

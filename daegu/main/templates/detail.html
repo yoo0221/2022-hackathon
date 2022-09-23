@@ -12,7 +12,7 @@
 <body>
 
     <!--posting-->
-    <section style="margin-top:2rem; padding-left:0;">
+    <section class="posting-total-box">
 
         <!--posting/writer-->
         <div class="writer-box">
@@ -24,13 +24,13 @@
         <div id="carouselExampleControls" class="carousel slide carousel-box" data-bs-ride="carousel">
             <div class="carousel-inner">
             <div class="carousel-item active">
-                <img style="height:200px;" src="{% static 'img/posting.png' %}" class="d-block w-100" alt="...">
+                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img style="height:200px;" src="{% static 'img/posting.png' %}" class="d-block w-100" alt="...">
+                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
             </div>
             <div class="carousel-item">
-                <img style="height:200px;" src="{% static 'img/posting.png' %}" class="d-block w-100" alt="...">
+                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
             </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -56,9 +56,9 @@
                     </div>
                     <div class="toast-container position-fixed bottom-20 end-0 p-3">
                         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-body" style="background-color:rgb(63, 63, 63); display:flex; flex-direction:row; justify-content:center; align-items:center; border-radius:10px; height:4rem;">
-                            <p style="text-align:center; color:white; margin:0; font-size:17px;">내 지도에 저장이 되었어요.</p>
-                            <button type="button" data-bs-dismiss="toast" aria-label="Close" style="color:white; font-weight:bold; background-color:rgb(63, 63, 63); border:0px; margin-left: 1rem;">X</button>
+                        <div class="toast-body posting-toast-box">
+                            <p class="posting-toast-text">내 지도에 저장이 되었어요.</p>
+                            <button type="button" data-bs-dismiss="toast" aria-label="Close" class="posting-toast-close">X</button>
                         </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
     </section>
 
     <!--comment-->
-    <div style="padding:2rem; padding-top:5rem; padding-bottom:4.5rem;">
+    <div class="comment-card">
 
         <div class="comment-box">
             <img class="comment-img" src="{% static 'img/user-img.png' %}">
@@ -120,7 +120,7 @@
                 <p style="color:gray; margin:0;">댓글달기 ...</p>
             </div>
             <div>
-                <h1 style="color:blue; font-size:20px; margin:0; padding-top:1rem; padding-left:5rem;">게시</h1>
+                <h1 class="comment-post">게시</h1>
             </div>
         </div>
 
@@ -129,7 +129,7 @@
     <!--footer-->
     <div class="footer-list">
         <span class="footer-icon"><a href="{% url 'main' %}"><img style="height:1.5rem;" src="{% static 'img/home.png' %}"></a></span>
-        <span class="footer-icon"><img style="height:1.5rem;" src="{% static 'img/location.png' %}"></span>
+        <span class="footer-icon"><a href="{% url 'course' %}"><img style="height:1.5rem;" src="{% static 'img/location.png' %}"></a></span>
         <span class="footer-icon"><img style="height:1.5rem;" src="{% static 'img/search.png' %}"></span>
     </div>
 
