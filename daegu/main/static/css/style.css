@@ -140,3 +140,31 @@
     font-size:12px; 
     font-weight:bold;
 }
+
+/*comment*/
+.comment-box{
+    display:flex;
+    flex-direction: row;
+}
+
+.comment-img{
+    height:60px; 
+    padding:0;
+}
+
+.comment-writer{
+    margin-left:0.5rem;
+    padding-left:0.5rem;
+}
+
+.comment-person{
+    font-size:20px; 
+    font-weight:bold; 
+    margin:0;
+}
+
+.comment-content{
+    font-size:15px; 
+    margin:0; 
+    margin-top:0.4rem;
+}
