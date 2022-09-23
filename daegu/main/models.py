@@ -2,6 +2,19 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+class HashRecommend(models.Model):
+    hash=models.CharField(max_length=30)
+
+class AdminPlace(models.Model):
+    name=models.CharField(max_length=50)
+    description=models.TextField()
+    category=models.CharField(max_length=20)
+    scrap_cnt=models.IntegerField(default=0)
+    thumbnail=models.ImageField()
+
+class AdminPlacePhoto(models.Model):
+    src = models.ImageField()
+    adminplace = models.ForeignKey(AdminPlace, on_delete=models.CASCADE)
 
 # class ScrappedPlace(models.Model):
 #     name = models.CharField()
