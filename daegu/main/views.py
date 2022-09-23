@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
+from .models import HashRecommend
 # Create your views here.
 def main(request):
-    return render(request, 'home.html')
+    hashs = HashRecommend.objects.all()
+    return render(request, 'home.html', {'hashs':hashs})
 
 def detail(request):
     return render(request, 'detail.html')
