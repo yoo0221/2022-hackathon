@@ -27,7 +27,7 @@
         <div style="padding:1.5rem;">
             <div class="content-list"> <!--overflow-x:scroll;-->
                 {% for adminplace in hash.adminplace_set.all %}
-                <a href="{% url 'detail' %}"><img class="content-img" src="{{ adminplace.thumbnail.url }}"></a>
+                <a href="{% url 'detail' adminplace.id %}"><img class="content-img" src="{{ adminplace.thumbnail.url }}"></a>
                 {% endfor %}
             </div>
         </div>
