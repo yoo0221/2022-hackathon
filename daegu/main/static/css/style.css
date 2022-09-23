@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 /*header*/
 .header-format{
     position:fixed; 
     top:0; 
     left:0; 
     right:0; 
-    height:3.5rem; 
+    height:4.5rem; 
     background-color:white; 
     display:flex; 
     justify-content:center; 
@@ -12,9 +14,11 @@
 }
 
 .header-text{
-    margin:0; 
-    color:black; 
-    font-size:20px;
+    font-family: 'Jua', sans-serif;
+    margin:3rem; 
+    color:purple; 
+    font-size:30px;
+    font-weight:bold;
 }
 
 /*search*/
@@ -94,10 +98,7 @@
 }
 
 .writer-img{
-    height:30px; 
-    width:30px; 
-    background-color:lightgray; 
-    border-radius:100px;
+    height:60px;
 }
 
 .writer{
@@ -127,9 +128,10 @@
     border-radius:15px; 
     display:flex; 
     align-items:center; 
-    justify-content:center; 
-    width:3rem; 
-    height:1.5rem; 
+    justify-content:space-around;
+    padding:0 1rem;
+    width:5rem; 
+    height:2rem; 
     box-shadow:0px 5px 5px rgb(129, 72, 129);
 }
 

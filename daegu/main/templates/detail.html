@@ -10,18 +10,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-    <!--header-->
-    <div class="header-format" >
-        <p class="header-text">대구가까</p>
-    </div>
 
     <!--posting-->
-    <section style="padding-top:5rem; padding-left:0;">
+    <section style="margin-top:2rem; padding-left:0;">
 
         <!--posting/writer-->
         <div class="writer-box">
-            <div class="writer-img"></div>
-            <div class="writer"><p style="margin:0;">대구 파수꾼</p></div>
+            <img style="height:60px;" src="{% static 'img/user-img.png' %}">
+            <div class="writer"><p style="margin:0; font-weight:bold;">대구 파수꾼</p></div>
         </div>
 
         <!--posting/images-->
@@ -51,7 +47,10 @@
         <div class="text-box">
             <h1 class="text-title">화원유원지</h1>
             <p class="text-content">화원유원지라는 곳에 와봤어요!:) <br>물가도 깨끗하고 사람도 적고 <br>너무 좋았습니당</p>
-            <div class="type-box"><p class="type-text">자연</p></div>
+            <div class="type-box">
+                <div><img src="{% static 'img/nature.png' %}"></div>
+                <p class="type-text">자연</p>
+            </div>
         </div>
 
     </section>
