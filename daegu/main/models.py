@@ -1,9 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class User(AbstractUser):
-    profile_img=models.ImageField()
-
 # Create your models here.
 class HashRecommend(models.Model):
     hash=models.CharField(max_length=30)
@@ -20,9 +17,13 @@ class AdminPlace(models.Model):
     scrap_cnt=models.IntegerField(default=0)
     thumbnail=models.ImageField()
     hashtag=models.ForeignKey(HashRecommend, on_delete=models.CASCADE, null=True)
-    
+
     def __str__(self):
         return self.name
+
+class Course(models.Model):
+    name=models.CharField(max_length=50)
+
 
 # class ScrappedPlace(models.Model):
 #     name = models.CharField()

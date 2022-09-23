@@ -14,44 +14,39 @@
     <section class="posting-total-box">
 
         <!--posting/writer-->
+        <!-- % static 'img/user-img.png' % -->
         <div class="writer-box">
-            <img style="height:60px;" src="{% static 'img/user-img.png' %}">
-            <div class="writer"><p style="margin:0; font-weight:bold;">대구 파수꾼</p></div>
+            <img style="height:60px;" src="{{ adminplace.profile_img.url }}">
+            <div class="writer"><p style="margin:0; font-weight:bold;">{{ adminplace.author }}</p></div>
         </div>
 
         <!--posting/images-->
         <div id="carouselExampleControls" class="carousel slide carousel-box" data-bs-ride="carousel">
             <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
+                <div class="carousel-item active">
+                    <img class="carousel-img" src="{{ adminplace.thumbnail }}" class="d-block w-100">
+                </div>
             </div>
-            <div class="carousel-item">
-                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
-            </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-            </button>
+            </button> -->
         </div>
 
         <!--posting/text-->
         <div class="text-box">
             <div style="display:flex;">
 
-                <h1 class="text-title">화원유원지</h1> 
+                <h1 class="text-title">{{ adminplace.name }}</h1> 
 
                     <!--toast-->
                     <div id="liveToastBtn" class="save-box">
                         <img class="save-img" src="{% static 'img/bin-scrap.png' %}">
-                        <p class="save-text">120</p>
+                        <p class="save-text" id="scrap">{{ adminplace.scrap_cnt }}</p>
                     </div>
                     <div class="toast-container position-fixed bottom-20 end-0 p-3">
                         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -61,23 +56,26 @@
                         </div>
                         </div>
                     </div>
+                    {{ adminplace.scrap_cnt|json_script:"scrapcnt" }}
                     <script>
                         const toastTrigger = document.getElementById('liveToastBtn')
                         const toastLiveExample = document.getElementById('liveToast')
+                        const scrap = document.getElementById('scrap')
                         if (toastTrigger) {
                         toastTrigger.addEventListener('click', () => {
                             const toast = new bootstrap.Toast(toastLiveExample)
-
+                            const cnt = scrap.innerText*1 + 1
+                            scrap.innerHTML = cnt
                             toast.show()
                         })
                         }
                     </script>
 
             </div>
-            <p class="text-content" style="padding:0;">화원유원지라는 곳에 와봤어요!:) <br>물가도 깨끗하고 사람도 적고 <br>너무 좋았습니당</p>
+            <p class="text-content" style="padding:0;">{{adminplace.description}}</p>
             <div class="type-box">
                 <div><img src="{% static 'img/nature.png' %}"></div>
-                <p class="type-text">자연</p>
+                <p class="type-text">{{adminplace.category}}</p>
             </div>
         </div>
 
