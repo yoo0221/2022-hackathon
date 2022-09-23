@@ -45,13 +45,43 @@
 
         <!--posting/text-->
         <div class="text-box">
-            <h1 class="text-title">화원유원지</h1>
-            <p class="text-content">화원유원지라는 곳에 와봤어요!:) <br>물가도 깨끗하고 사람도 적고 <br>너무 좋았습니당</p>
+            <div style="display:flex;">
+
+                <h1 class="text-title">화원유원지</h1> 
+
+                    <!--toast-->
+                    <div id="liveToastBtn" class="save-box">
+                        <img class="save-img" src="{% static 'img/bin-scrap.png' %}">
+                        <p class="save-text">120</p>
+                    </div>
+                    <div class="toast-container position-fixed bottom-20 end-0 p-3">
+                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body" style="background-color:rgb(37, 37, 37);">
+                            <p style="text-align:center; color:white;">내 지도에 저장이 되었어요.</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" style="color:white;"></button>
+                        </div>
+                        </div>
+                    </div>
+                    <script>
+                        const toastTrigger = document.getElementById('liveToastBtn')
+                        const toastLiveExample = document.getElementById('liveToast')
+                        if (toastTrigger) {
+                        toastTrigger.addEventListener('click', () => {
+                            const toast = new bootstrap.Toast(toastLiveExample)
+
+                            toast.show()
+                        })
+                        }
+                    </script>
+
+            </div>
+            <p class="text-content" style="padding:0;">화원유원지라는 곳에 와봤어요!:) <br>물가도 깨끗하고 사람도 적고 <br>너무 좋았습니당</p>
             <div class="type-box">
                 <div><img src="{% static 'img/nature.png' %}"></div>
                 <p class="type-text">자연</p>
             </div>
         </div>
+
     </section>
 
     <!--comment-->
