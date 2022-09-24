@@ -99,6 +99,24 @@
     width:33%; 
     display:flex; 
     justify-content:center;
+} 
+
+.ap-writer-box{
+    display:flex; 
+    align-items: center; 
+    background-image: url('/static/img/header-ap.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.ap-writer-img{
+    height:60px;
+}
+
+.ap-writer{
+    margin-left:0.5rem;
 }
 
 /*posting*/

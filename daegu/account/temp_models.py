@@ -1,1 +1,0 @@
-from main.models import AdminPlace, Place, Course
