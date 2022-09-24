@@ -8,6 +8,13 @@
     <title>Posting</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous">
+    </script>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 <body>
     <!--posting-->
@@ -27,35 +34,31 @@
                     <img class="carousel-img" src="{{ adminplace.thumbnail.url }}" class="d-block w-100">
                 </div>
             </div>
-            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-            </button> -->
         </div>
 
         <!--posting/text-->
         <div class="text-box d-flex justify-content-center">
             <div class="container">
                 <div class="row">
-                    <h1 class="text-title col-10 p-0"><span>{{ adminplace.name }}</span></h1> 
+                    <h1 class="text-title col-9 p-0 mb-0 align-items-center"><span>{{ adminplace.name }}</span></h1> 
                     <div id="liveToastBtn" class="save-box col-2">
-                        <!-- <img class="save-img row" id="scrap-btn-full" src="{% static 'img/full-scrap.png' %}"> -->
-                        <img class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}">
-                        <p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p>
+                        {% if adminplace in user.adminplacescrap.all %}
+                        <div class="d-flex align-items-center justify-content-center"><img class="save-img row" id="scrap-btn-full" src="{% static 'img/full-scrap.png' %}"></div>
+                        <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p></div>
+                        {% else %}
+                        <div class="d-flex align-items-center justify-content-center"><img class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}"></div>
+                        <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p></div>
+                        {% endif %}
                     </div>
                 </div>
                 
                 <!--toast-->
                 <div class="toast-container position-fixed bottom-20 end-0 p-3">
                     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body posting-toast-box">
-                        <p class="posting-toast-text">내 지도에 저장이 되었어요.</p>
-                        <button type="button" data-bs-dismiss="toast" aria-label="Close" class="posting-toast-close">X</button>
-                    </div>
+                        <div class="toast-body posting-toast-box">
+                            <p class="posting-toast-text">내 지도에 저장이 되었어요.</p>
+                            <button type="button" data-bs-dismiss="toast" aria-label="Close" class="posting-toast-close">X</button>
+                        </div>
                     </div>
                 </div>
                 {{ adminplace.scrap_cnt|json_script:"scrapcnt" }}
@@ -64,25 +67,55 @@
                     const toastLiveExample = document.getElementById('liveToast')
                     let scrap = document.getElementById('scrap')
                     if (toastTrigger) {
-                    toastTrigger.addEventListener('click', () => {
-                        const scrap_btn_empty = document.getElementById('scrap-btn-empty')
-                        const scrap_btn_full = document.getElementById('scrap-btn-full')
-                        const toast = new bootstrap.Toast(toastLiveExample)
-                        let cnt = scrap.innerText*1;
-                        if (scrap_btn_empty == null){
-                            cnt -= 1;
-                            toastTrigger.innerHTML="<img class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p>"
+                        toastTrigger.addEventListener('click', () => {
+                            const scrap_btn_empty = document.getElementById('scrap-btn-empty')
+                            const scrap_btn_full = document.getElementById('scrap-btn-full')
+                            const toast = new bootstrap.Toast(toastLiveExample)
+                            let cnt = scrap.innerText*1;
+                            if (scrap_btn_empty == null){
+                                cnt -= 1;
+                                toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p></div>"
+                                let param = {'content':'False'}
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "{% url 'scrap' adminplace.id %}",
+                                    headers: {
+                                        'X-CSRFTOKEN' : '{{ csrf_token }}'
+                                    },
+                                    data: JSON.stringify(param),
+                                    success: function (response) {
+                                        console.log("success")
+                                    },
+                                    error: function (response) {
+                                        // alert the error if any error occured
+                                    }
+                                })
+                            }
+                            else{
+                                toast.show()
+                                cnt += 1;
+                                toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p></div>"
+                                let param = {'content':'True'}
+                                $.ajax({
+                                    type: 'POST',
+                                    url: "{% url 'scrap' adminplace.id %}",
+                                    headers: {
+                                        'X-CSRFTOKEN' : '{{ csrf_token }}'
+                                    },
+                                    data: JSON.stringify(param),
+                                    success: function (response) {
+                                        console.log("success")
+                                    },
+                                    error: function (response) {
+                                        // alert the error if any error occured
+                                    }
+                                })
+                            }
+                            console.log(cnt)
+                            scrap = document.getElementById('scrap')
+                            scrap.innerText = cnt   
                         }
-                        else{
-                            toast.show()
-                            cnt += 1;
-                            toastTrigger.innerHTML="<img class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p>"
-                        }
-                        console.log(cnt)
-                        scrap = document.getElementById('scrap')
-                        scrap.innerHTML = cnt
-                    })
-                    }
+                    )}
                 </script>
                 <div class="text-content row">
                     {{adminplace.description|linebreaks}}

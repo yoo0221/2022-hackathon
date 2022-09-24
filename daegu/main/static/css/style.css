@@ -48,8 +48,13 @@
     overflow-x:scroll;
 }
 
-.content-img{
+.content-img-container{
     width:200px; 
+    height:200px;
+}
+
+.content-img{
+    width:200px;
     margin:0 0.5rem;
 }
 

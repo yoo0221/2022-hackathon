@@ -27,5 +27,7 @@ urlpatterns = [
     path('course/', views.course, name="course"),
     path('postcreate/<int:course_id>', views.postcreate, name="postcreate"),
     path('postdetail/<int:course_id>', views.postdetail, name="postdetail"),
+    path('myfeed/', views.myfeed, name="myfeed"),
+    path('scrap/<int:course_id>', views.scrap, name="scrap")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

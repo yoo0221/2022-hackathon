@@ -1,5 +1,8 @@
+import json
 from django.shortcuts import render, redirect
 from .models import HashRecommend, AdminPlace, AdminPlaceComment, Course
+from django.http import HttpResponse, JsonResponse
+
 # Create your views here.
 def main(request):
     hashs = HashRecommend.objects.all()
@@ -9,8 +12,9 @@ def detail(request, adminplace_id):
     adminplace = AdminPlace.objects.get(pk=adminplace_id)
     if request.method == 'POST':
         comment = request.POST['text']
-        AdminPlaceComment.objects.create(author=request.user, text=comment, adminplace=adminplace)
-    
+        if (comment is not None) and (comment != ""):
+            AdminPlaceComment.objects.create(author=request.user, text=comment, adminplace=adminplace)
+                 
     return render(request, 'detail.html', {'adminplace':adminplace})
 
 def course(request):
@@ -34,3 +38,22 @@ def postcreate(request, course_id):
 def postdetail(request, course_id):
     course = Course.objects.get(pk=course_id)
     return render(request, 'postdetail.html', {"course":course})
+
+def myfeed(request):
+    return render(request, 'myfeed.html')
+
+def scrap(request, course_id):
+    jsonObject = json.loads(request.body)
+    adminplace = AdminPlace.objects.get(pk=course_id)
+    content = jsonObject.get('content')
+    if content == "True":
+        adminplace.scrap_cnt += 1
+        adminplace.save()
+        request.user.adminplacescrap.add(adminplace)
+    else:
+        adminplace.scrap_cnt -= 1
+        adminplace.save()
+        request.user.adminplacescrap.remove(adminplace)
+
+    return JsonResponse({'content':content})
+    

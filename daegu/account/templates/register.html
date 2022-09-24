@@ -1,5 +1,9 @@
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_table }}
+    <!-- {{ form.as_table }}
+    <input type="submit">  -->
+    <input type="text" name="username" id="username">
+    <input type="password" name="password" id="password">
+    <input type="file" name="img" id="img">
     <input type="submit">
 </form>
