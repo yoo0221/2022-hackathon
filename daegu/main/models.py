@@ -35,6 +35,7 @@ class Course(models.Model):
     name=models.CharField(max_length=50)
     scrap_cnt=models.IntegerField(default=0)
     user=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    hashtag=models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -46,7 +47,6 @@ class Place(models.Model):
     description=models.TextField(null=True, blank=True)
     lat=models.FloatField()
     lng=models.FloatField()
-    hashtag=models.CharField(max_length=100, null=True, blank=True)
     course=models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, related_name="place")
 
     def __str__(self):

@@ -22,11 +22,12 @@ def postcreate(request, course_id):
         for place in course.place.all():
             img = request.FILES['place-img-'+str(place.id)]
             description = request.POST['description-'+str(place.id)]
-            hashtag = request.POST['hashtag-'+str(place.id)]
+            hashtag = request.POST['hashtag']
             place.img = img
             place.description = description
-            place.hashtag = hashtag
+            course.hashtag = hashtag
             place.save()
+            course.save()
         return redirect('postdetail', course_id)
     return render(request, 'postcreate.html', {"course":course})
 

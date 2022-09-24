@@ -17,8 +17,8 @@
             <div class="my-5">
                 <div class="d-flex justify-content-center">
                     <label class="img-add" for="place-img-{{place.id}}">
-                        <img class="img" src="{% static 'img/img-add.png' %}" alt="">
-                        <input type="file" name="place-img-{{place.id}}" id="place-img-{{place.id}}">
+                        <img class="img" id="img-{{place.id}}" src="{% static 'img/img-add.png' %}" alt="">
+                        <input type="file" class="img-input" name="place-img-{{place.id}}" id="place-img-{{place.id}}">
                     </label>
                 </div>
                 <div class="mt-4">
@@ -27,16 +27,16 @@
                     <div class="d-flex justify-content-center">
                         <textarea class="description-input" placeholder="글을 작성해보세요." name="description-{{place.id}}" id="description-{{place.id}}" cols="30" rows="10"></textarea>
                     </div>
-                    <div class="d-flex justify-content-start mt-3">
-                        <label for="hashtag-{{place.id}}"><h4 style="font-weight: bold;">자유 태그</h4></label>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <input class="hashtag-input" placeholder="태그를 작성해보세요." name="hashtag-{{place.id}}" id="hashtag-{{place.id}}" type="text">
-                    </div>
                 </div>
             </div>
             <hr>
             {% endfor %}
+            <div class="d-flex justify-content-start mt-3">
+                <label for="hashtag"><h4 style="font-weight: bold;">자유 태그</h4></label>
+            </div>
+            <div class="d-flex justify-content-center">
+                <input class="hashtag-input" placeholder="태그를 작성해보세요." name="hashtag" id="hashtag" type="text">
+            </div>
         </div>
     </div>
     <div class="d-flex justify-content-end my-3">
@@ -44,7 +44,16 @@
     </div>
 </form>
 <script>
-    const img = document.getElementsByClassName('img');
+    const img_input = document.getElementsByClassName('img-input');
+    const img = document.getElementsByClassName('img')
+    for (let i=0;i<img_input.length;i++){
+        img_input[i].onchange = (evt) => {
+            const [file] = img_input[i].files
+            if (file) {
+                img[i].src = URL.createObjectURL(file)
+            }
+        }
+    }
 </script>
 {% endblock %}
 
