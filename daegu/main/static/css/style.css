@@ -2,11 +2,11 @@
 
 /*header*/
 .header-format{
-    height:6.5rem; 
+    height:8.5rem; 
     display:flex; 
     justify-content:center; 
     align-items:center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     padding-bottom: 20px;
     background-image: url("/static/img/header.png");
     background-size: cover;
@@ -17,8 +17,7 @@
     font-family: 'Jua', sans-serif;
     margin:3rem; 
     color:white; 
-    font-size:30px;
-    font-weight:bold;
+    font-size:40px;
 }
 
 /*search*/
@@ -314,5 +313,16 @@
     padding-bottom: 2.0rem;
     padding-top: 1.2rem;
     /* padding-top: 0.5rem; */
+}
+
+.home-indicator{
+    background-color: #DECEE5;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    align-items: center !important;
+}
+
+.ind-pic{
+    width: 20px;
+    height: 20px;
 }
 
