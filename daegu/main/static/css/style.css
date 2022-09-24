@@ -142,14 +142,14 @@
 }
 
 .type-box{
-    border-radius:15px; 
-    display:flex; 
-    align-items:center; 
-    justify-content:space-around;
-    padding:0 1rem;
-    width:5rem; 
-    height:2rem; 
-    box-shadow:0px 5px 5px rgb(129, 72, 129);
+    border-radius:13px !important;
+    display:flex !important; 
+    align-items:center !important; 
+    justify-content:space-around !important;
+    padding:0 1rem !important;
+    width:7rem !important; 
+    height:2rem !important; 
+    box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
 }
 
 .type-text{
@@ -238,7 +238,205 @@
 
 /*course - tab*/
 .tab{
-    width:50vw; 
-    background-color:white; 
-    color:black;
+    width:50vw !important; 
+    background-color:white !important; 
+    color:black !important;
+    height:3.5rem;
+}
+
+.tab:focus{
+    background-color:black !important;
+    color:blueviolet !important;
+}
+
+.tab:active{
+    background-color:black !important;
+    color:blueviolet !important;
+}
+
+/*course - search*/
+.course-search-text{
+    box-shadow:0px 5px 5px lightgray;
+}
+
+.course-search-button{
+    border:1px solid lightgray; 
+    border-radius:7px; 
+    box-shadow:0px 5px 5px lightgray;
+}
+
+/*course - type*/
+.course-type-list{
+    height:100px !important; 
+    white-space:nowrap !important; 
+    overflow-x:scroll !important;
+    display:flex !important;
+    flex-direction:row !important;
+    padding:2rem 0 2rem 0 !important;
+}
+
+/*course - new search site*/
+.new-search-site-box{
+    isplay:flex; 
+    flex-direction:row;
+}
+
+.new-search-site-header{
+    height:4rem; 
+    width:100vw; 
+    display:flex; 
+    justify-content:start; 
+    align-items:end;
+}
+
+.new-search-site-search{
+    padding:0 1rem; 
+    padding-top:1rem; 
+    padding:0; 
+    width:80%;
+}
+
+.new-search-site-nextButton-box{
+    display:none;
+}
+
+.new-search-site-nextButton{
+    background:#545157; 
+    color:white; 
+    width:6rem; 
+    height:2rem; 
+    padding-top:0; 
+}
+
+/*course - new search result*/
+.new-search-result-box{
+    display:flex; 
+    width:100%; 
+    justify-content:center; 
+    align-items:center; 
+    height:5rem;
+}
+
+.new-search-result-img{
+    height:2rem;
+}
+
+.new-search-result-box{
+    padding:0 1.5rem;
+}
+
+.new-search-result-store{
+    font-size:15px;
+}
+
+.new-search-result-title{
+    font-weight:bold; 
+    padding-right:0.2rem;
+}
+
+.new-search-result-address{
+    font-size:12px; 
+    margin:0;
+}
+
+.search-ment{
+    height:85vh; 
+    display:flex; 
+    justify-content:center; 
+    align-items:center;
+}
+
+/*select-type*/
+.select-type-modal{
+    display:none;
+}
+
+.select-type-box{
+    border-radius:13px !important;
+    display:flex !important; 
+    align-items:center !important; 
+    justify-content:space-around !important;
+    padding:0 1rem !important;
+    width:4.8rem !important; 
+    height:2rem !important; 
+    box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
+}
+
+.select-type-box:focus{
+    border-radius:13px;
+    border:4px solid rgb(129, 72, 129);
+}
+
+.select-type-box:active{
+    border-radius:13px;
+    border:4px solid rgb(129, 72, 129);
+}
+
+.select-type-box-larger{
+    border-radius:13px !important;
+    display:flex !important; 
+    align-items:center !important; 
+    justify-content:space-around !important;
+    padding:0 1rem !important;
+    width:6.6rem !important; 
+    height:2rem !important; 
+    box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
+}
+
+/*course - complete button*/
+.complete-btn{
+    width:90vw; 
+    height:3rem; 
+    background-color:#545157!important; 
+    color:white!important;
+}
+
+/*course - map*/
+.map-title{
+    font-weight:bold; 
+    font-size:20px; 
+    margin:0;
+}
+
+/*course - search*/
+.search-modal{
+    position:fixed; 
+    top:0;
+    left:0; 
+    background-color:white;
+    display:none;
+    height:100%;
+}
+
+.modal-result{
+    height:100%;
+    background-color:white;
+    display:none;
+}
+
+.active{
+    display:flex;
+}
+
+.hidden{
+    display:none;
+}
+
+input::placeholder{
+    font-size:14px;
+}
+
+/*radio button*/
+input[type="radio"] {
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    transition: border 0.5s ease-in-out;
+}
+
+input[type="radio"]:checked{
+    border:6px solid #450C8D;
 }
