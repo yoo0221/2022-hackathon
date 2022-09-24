@@ -3,6 +3,33 @@
 
 {% block content %}
 
+<div class="d-flex justify-content-start ap-writer-box ps-4 pe-2 align-items-center">
+    <img class="circle-img" style="height:60px;" src="{{ user.profile_img.url }}">
+    <div class="writer"><p style="margin:0; font-weight:bold; color: white;">{{ user }}(나)</p></div>
+</div>
 
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"">
+    <li class="nav-item" role="presentation">
+    <button class="myfeed-tab nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">사진</button>
+    <hr style="margin:0; color:gray;">
+    </li>
+    <li class="nav-item" role="presentation">
+    <button class="myfeed-tab nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">코스</button>
+    <hr style="margin:0; color:gray;">
+    </li>
+</ul>
+
+<script>
+    const pic_tab=document.getElementById('pills-home-tab')
+    const cou_tab=document.getElementById('pills-profile-tab')
+    pic_tab.addEventListener('click', ()=>{
+        pic_tab.style="border-bottom: 3px solid #450C8D;"
+        cou_tab.style="border-bottom: 0px;"
+    })
+    cou_tab.addEventListener('click', ()=>{
+        cou_tab.style="border-bottom: 3px solid #450C8D;"
+        pic_tab.style="border-bottom: 0px;"
+    })
+</script>
 {% endblock %}
 

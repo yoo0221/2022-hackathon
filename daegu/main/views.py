@@ -56,4 +56,6 @@ def scrap(request, course_id):
         request.user.adminplacescrap.remove(adminplace)
 
     return JsonResponse({'content':content})
-    
+
+def setcourse(request):
+    return render(request, 'setcourse.html')    

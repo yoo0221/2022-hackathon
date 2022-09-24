@@ -179,7 +179,7 @@
     align-items:center !important; 
     justify-content:space-around !important;
     padding:0 1rem !important;
-    width:7rem !important; 
+    width:5rem !important; 
     height:2rem !important; 
     box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
 }
@@ -276,6 +276,19 @@
     margin-left: 1rem;
 }
 
+.myfeed-tab{
+    width:50vw !important; 
+    background-color:white !important; 
+    color:black !important;
+    height:3.5rem;
+    border-radius: 0px 0px 0px 0px / 0px 0px 0px 0px !important;
+}
+
+.myfeed-tab:active{
+    background-color:lightgray !important;
+    color:blueviolet !important;
+}
+
 /*course - tab*/
 .tab{
     width:50vw !important; 
@@ -317,7 +330,7 @@
 
 /*course - new search site*/
 .new-search-site-box{
-    isplay:flex; 
+    display:flex; 
     flex-direction:row;
 }
 
@@ -547,4 +560,41 @@ input[type="radio"]:checked{
 .ind-pic{
     width: 20px;
     height: 20px;
+}
+
+/*content*/
+.category-text{
+    padding-left:2rem; 
+    font-weight:bold; 
+    color:purple; 
+    font-size:20px;
+}
+
+.category-list{
+    height:80px; 
+    white-space:nowrap; 
+    overflow-x:scroll;
+}
+
+/* .category-container{
+    width:50px; 
+    height:50px;
+} */
+
+.category-img{
+    width:200px;
+    margin:0 0.5rem;
+}
+
+.place-list{
+    border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px !important;
+    box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
+    height: 170px;
+    white-space: nowrap;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+
+.place-list > hr{
+    margin: 10px;
 }
