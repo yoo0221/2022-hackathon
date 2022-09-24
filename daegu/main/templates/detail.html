@@ -43,7 +43,8 @@
                 <div class="row">
                     <h1 class="text-title col-10 p-0"><span>{{ adminplace.name }}</span></h1> 
                     <div id="liveToastBtn" class="save-box col-2">
-                        <img class="save-img row" src="{% static 'img/bin-scrap.png' %}">
+                        <!-- <img class="save-img row" id="scrap-btn-full" src="{% static 'img/full-scrap.png' %}"> -->
+                        <img class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}">
                         <p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p>
                     </div>
                 </div>
@@ -61,13 +62,25 @@
                 <script>
                     const toastTrigger = document.getElementById('liveToastBtn')
                     const toastLiveExample = document.getElementById('liveToast')
-                    const scrap = document.getElementById('scrap')
+                    let scrap = document.getElementById('scrap')
                     if (toastTrigger) {
                     toastTrigger.addEventListener('click', () => {
+                        const scrap_btn_empty = document.getElementById('scrap-btn-empty')
+                        const scrap_btn_full = document.getElementById('scrap-btn-full')
                         const toast = new bootstrap.Toast(toastLiveExample)
-                        const cnt = scrap.innerText*1 + 1
+                        let cnt = scrap.innerText*1;
+                        if (scrap_btn_empty == null){
+                            cnt -= 1;
+                            toastTrigger.innerHTML="<img class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p>"
+                        }
+                        else{
+                            toast.show()
+                            cnt += 1;
+                            toastTrigger.innerHTML="<img class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p>"
+                        }
+                        console.log(cnt)
+                        scrap = document.getElementById('scrap')
                         scrap.innerHTML = cnt
-                        toast.show()
                     })
                     }
                 </script>

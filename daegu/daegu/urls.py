@@ -25,5 +25,7 @@ urlpatterns = [
     path('detail/<int:adminplace_id>', views.detail, name="detail"),
     path('account/', include('account.urls')),
     path('course/', views.course, name="course"),
+    path('postcreate/<int:course_id>', views.postcreate, name="postcreate"),
+    path('postdetail/<int:course_id>', views.postdetail, name="postdetail"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

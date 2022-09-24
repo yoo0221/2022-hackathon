@@ -259,3 +259,60 @@
     background-color:white; 
     color:black;
 }
+.img-add{
+    width: 305px;
+    height: 300px;
+}
+
+.img-add > input{
+    visibility: hidden;
+}
+
+.img-add > img{
+    width: 100%;
+    height: 100%;
+}
+
+.body {
+    padding-bottom: 5rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.description-input{
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    padding: 5px;
+}
+
+.hashtag-input{
+    width: 100%;
+    border-radius: 5px 5px 5px 5px / 5px 5px 5px 5px;
+}
+
+.marker > img{
+    width: 14px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.post-submit{
+    width: 100%;
+    height: 30px;
+    border: 0px;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    background-color: #450C8D;
+    color: white;
+}
+
+.post-header{
+    background-image: url('/static/img/header-post.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1.6rem;
+    padding-bottom: 2.0rem;
+    padding-top: 1.2rem;
+    /* padding-top: 0.5rem; */
+}
+
