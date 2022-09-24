@@ -71,8 +71,10 @@
                     })
                     }
                 </script>
-            
-                <p class="text-content row" style="padding:0;">{{adminplace.description}}</p>
+                <div class="text-content row">
+                    {{adminplace.description|linebreaks}}
+                </div>
+                <!-- <p class="text-content row" style="padding:0;">{{adminplace.description|linebreaks}}</p> -->
                 <div class="row">
                     <div class="type-box col-3 d-flex p-0">
                         {% if adminplace.category == "자연" %}

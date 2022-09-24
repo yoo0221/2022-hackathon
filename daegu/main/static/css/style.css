@@ -7,9 +7,10 @@
     justify-content:center; 
     align-items:center;
     margin-bottom: 1.5rem;
-    background-color: #450C8D;
-    border-radius: 0px 0px 0px 50px / 0px 0px 50px 60px;
     padding-bottom: 20px;
+    background-image: url("/static/img/header.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .header-text{
@@ -130,6 +131,10 @@
     padding-top:0.5rem;
 }
 
+.text-content > p{
+    padding-left: 0px;
+}
+
 .save-box{
     padding-left:10rem;
 }
@@ -184,8 +189,12 @@
 .comment-writer{
     margin-left:0.5rem;
     padding-left:0.5rem;
+    width: 60%;
 }
 
+.comment-writer > input:focus{
+    outline: none;
+}
 .comment-person{
     font-size:20px; 
     font-weight:bold; 
@@ -203,7 +212,7 @@
     font-size:20px; 
     margin:0; 
     padding-top:1rem; 
-    padding-left:5rem;
+    padding-left:1rem;
     border: 0px;
     background-color: white;
 }
