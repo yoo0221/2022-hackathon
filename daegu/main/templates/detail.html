@@ -14,70 +14,96 @@
     <section class="posting-total-box">
 
         <!--posting/writer-->
+        <!-- % static 'img/user-img.png' % -->
         <div class="writer-box">
-            <img style="height:60px;" src="{% static 'img/user-img.png' %}">
-            <div class="writer"><p style="margin:0; font-weight:bold;">대구 파수꾼</p></div>
+            <img class="circle-img" style="height:60px;" src="{{ adminplace.profile_img.url }}">
+            <div class="writer"><p style="margin:0; font-weight:bold;">{{ adminplace.author }}</p></div>
         </div>
 
         <!--posting/images-->
         <div id="carouselExampleControls" class="carousel slide carousel-box" data-bs-ride="carousel">
             <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
+                <div class="carousel-item active d-flex justify-content-center">
+                    <img class="carousel-img" src="{{ adminplace.thumbnail.url }}" class="d-block w-100">
+                </div>
             </div>
-            <div class="carousel-item">
-                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img class="carousel-img" src="{% static 'img/posting.png' %}" class="d-block w-100">
-            </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-            </button>
+            </button> -->
         </div>
 
         <!--posting/text-->
-        <div class="text-box">
-            <div style="display:flex;">
-
-                <h1 class="text-title">화원유원지</h1> 
-
-                    <!--toast-->
-                    <div id="liveToastBtn" class="save-box">
-                        <img class="save-img" src="{% static 'img/bin-scrap.png' %}">
-                        <p class="save-text">120</p>
+        <div class="text-box d-flex justify-content-center">
+            <div class="container">
+                <div class="row">
+                    <h1 class="text-title col-10 p-0"><span>{{ adminplace.name }}</span></h1> 
+                    <div id="liveToastBtn" class="save-box col-2">
+                        <!-- <img class="save-img row" id="scrap-btn-full" src="{% static 'img/full-scrap.png' %}"> -->
+                        <img class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}">
+                        <p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p>
                     </div>
-                    <div class="toast-container position-fixed bottom-20 end-0 p-3">
-                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-body posting-toast-box">
-                            <p class="posting-toast-text">내 지도에 저장이 되었어요.</p>
-                            <button type="button" data-bs-dismiss="toast" aria-label="Close" class="posting-toast-close">X</button>
-                        </div>
-                        </div>
+                </div>
+                
+                <!--toast-->
+                <div class="toast-container position-fixed bottom-20 end-0 p-3">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body posting-toast-box">
+                        <p class="posting-toast-text">내 지도에 저장이 되었어요.</p>
+                        <button type="button" data-bs-dismiss="toast" aria-label="Close" class="posting-toast-close">X</button>
                     </div>
-                    <script>
-                        const toastTrigger = document.getElementById('liveToastBtn')
-                        const toastLiveExample = document.getElementById('liveToast')
-                        if (toastTrigger) {
-                        toastTrigger.addEventListener('click', () => {
-                            const toast = new bootstrap.Toast(toastLiveExample)
-
-                            toast.show()
-                        })
+                    </div>
+                </div>
+                {{ adminplace.scrap_cnt|json_script:"scrapcnt" }}
+                <script>
+                    const toastTrigger = document.getElementById('liveToastBtn')
+                    const toastLiveExample = document.getElementById('liveToast')
+                    let scrap = document.getElementById('scrap')
+                    if (toastTrigger) {
+                    toastTrigger.addEventListener('click', () => {
+                        const scrap_btn_empty = document.getElementById('scrap-btn-empty')
+                        const scrap_btn_full = document.getElementById('scrap-btn-full')
+                        const toast = new bootstrap.Toast(toastLiveExample)
+                        let cnt = scrap.innerText*1;
+                        if (scrap_btn_empty == null){
+                            cnt -= 1;
+                            toastTrigger.innerHTML="<img class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p>"
                         }
-                    </script>
-
-            </div>
-            <p class="text-content" style="padding:0;">화원유원지라는 곳에 와봤어요!:) <br>물가도 깨끗하고 사람도 적고 <br>너무 좋았습니당</p>
-            <div class="type-box">
-                <div><img src="{% static 'img/nature.png' %}"></div>
-                <p class="type-text">자연</p>
+                        else{
+                            toast.show()
+                            cnt += 1;
+                            toastTrigger.innerHTML="<img class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p>"
+                        }
+                        console.log(cnt)
+                        scrap = document.getElementById('scrap')
+                        scrap.innerHTML = cnt
+                    })
+                    }
+                </script>
+                <div class="text-content row">
+                    {{adminplace.description|linebreaks}}
+                </div>
+                <!-- <p class="text-content row" style="padding:0;">{{adminplace.description|linebreaks}}</p> -->
+                <div class="row">
+                    <div class="type-box col-3 d-flex p-0">
+                        {% if adminplace.category == "자연" %}
+                        <span><img src="{% static 'img/category-nature.png' %}"></span>
+                        {% elif adminplace.category == "카페" %}
+                        <span><img src="{% static 'img/category-cafe.png' %}"></span>
+                        {% elif adminplace.category == "식당" %}
+                        <span><img src="{% static 'img/category-cafeteria.png' %}"></span>
+                        {% elif adminplace.category == "여가/활동" %}
+                        <span><img src="{% static 'img/category-activity.png' %}"></span>
+                        {% else %}
+                        <span><img src="{% static 'img/category-nature.png' %}"></span>
+                        {% endif %}
+                        <span class="type-text">{{adminplace.category}}</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -85,42 +111,28 @@
 
     <!--comment-->
     <div class="comment-card">
+        {% for comment in adminplace.adminplacecomment_set.all %}
+            <div class="comment-box">
+                <img class="comment-img" src="{{ comment.author.profile_img.url }}">
+                <div class="comment-writer">
+                    <h1 class="comment-person">{{ comment.author }}</h1>
+                    <p class="comment-content">{{ comment.text }}</p>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
 
         <div class="comment-box">
-            <img class="comment-img" src="{% static 'img/user-img.png' %}">
-            <div class="comment-writer">
-                <h1 class="comment-person">min_ji</h1>
-                <p class="comment-content">대구에 이런 데도 있네요...</p>
-            </div>
-        </div>
-        <hr>
-
-        <div class="comment-box">
-            <img class="comment-img" src="{% static 'img/user-img.png' %}">
-            <div class="comment-writer">
-                <h1 class="comment-person">지민이</h1>
-                <p class="comment-content">화원유원지 좋죠 저도 가봤는데<br>은근 분위기 있음!!</p>
-            </div>
-        </div>
-        <hr>
-
-        <div class="comment-box">
-            <img class="comment-img" src="{% static 'img/user-img.png' %}">
-            <div class="comment-writer">
-                <h1 class="comment-person">울랄랄라</h1>
-                <p class="comment-content">다음번에 가족끼리 오고 싶네요 ㅎㅎ</p>
-            </div>
-        </div>
-        <hr>
-
-        <div class="comment-box">
-            <img class="comment-img" src="{% static 'img/user-img.png' %}">
-            <div class="comment-writer" style="padding-top:1rem;">
-                <p style="color:gray; margin:0;">댓글달기 ...</p>
-            </div>
-            <div>
-                <h1 class="comment-post">게시</h1>
-            </div>
+            <img class="comment-img" src="{{ user.profile_img.url }}">
+            <form style="display: flex;" action="" method="post">
+                {% csrf_token %}
+                <div class="comment-writer" style="padding-top:1rem;">
+                    <input style="color:gray; margin:0; border: 0px;" id="text" name="text" placeholder="댓글 달기...">
+                </div>
+                <div>
+                    <input class="comment-post" type="submit" value="게시">
+                </div>
+            </form>           
         </div>
 
     </div>
