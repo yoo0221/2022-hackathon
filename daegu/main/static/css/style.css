@@ -2,22 +2,20 @@
 
 /*header*/
 .header-format{
-    /* position:fixed; 
-    top:0; 
-    left:0; 
-    right:0;  */
-    height:4.5rem; 
-    background-color:white; 
+    height:6.5rem; 
     display:flex; 
     justify-content:center; 
     align-items:center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
+    background-color: #450C8D;
+    border-radius: 0px 0px 0px 50px / 0px 0px 50px 60px;
+    padding-bottom: 20px;
 }
 
 .header-text{
     font-family: 'Jua', sans-serif;
     margin:3rem; 
-    color:purple; 
+    color:white; 
     font-size:30px;
     font-weight:bold;
 }
@@ -27,6 +25,12 @@
     margin-top:3rem; 
     padding:2rem; 
     padding-bottom:0;
+}
+
+.circle-img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px 30px 30px 30px / 30px 30px 30px 30px;
 }
 
 /*content*/
@@ -171,8 +175,10 @@
 }
 
 .comment-img{
+    width: 60px;
     height:60px; 
     padding:0;
+    border-radius: 30px 30px 30px 30px / 30px 30px 30px 30px;
 }
 
 .comment-writer{
@@ -198,6 +204,8 @@
     margin:0; 
     padding-top:1rem; 
     padding-left:5rem;
+    border: 0px;
+    background-color: white;
 }
 
 /*detail - posting*/
