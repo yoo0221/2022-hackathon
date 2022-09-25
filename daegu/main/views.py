@@ -59,4 +59,16 @@ def scrap(request, place_id):
     return JsonResponse({'content':content})
 
 def setcourse(request):
-    return render(request, 'setcourse.html')    
+    places_sick = request.user.placescrap.all().filter(category="식당")
+    places_ca = request.user.placescrap.all().filter(category="카페")
+    places_ja = request.user.placescrap.all().filter(category="자연")
+    places_yeo = request.user.placescrap.all().filter(category="여가/활동")
+    print(places_sick)
+    print(places_ca)
+    print(places_ja)
+    print(places_yeo)
+    return render(request, 'setcourse.html',
+        {"places_sick" : places_sick,
+        "places_ca" : places_ca,
+        "places_ja" : places_ja,
+        "places_yeo" : places_yeo})
