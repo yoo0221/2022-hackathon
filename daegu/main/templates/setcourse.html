@@ -58,12 +58,12 @@
         </div>
         
         <!--선택된 장소 리스트들화면-->
-        <div class="container place-list m-2 me-3 place_list" id="place_list_sick">
+        <div class="container place-list m-2 me-3 place_list" id="place_list_sick" style="width: 340px;">
             <!--한객체씩의 div-->
             {% for places in places_sick %}
-            <div class="row d-flex flex-row ps-1">
-                <img class="col-3" src="{{places.img.url}}" >
-                    <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
+            <div class="row d-flex flex-row ps-1 justify-content-center align-items-center">
+                <img class="col-3" src="{{places.img.url}} " >
+                    <div class="col-5 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
                         <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
@@ -72,12 +72,12 @@
             </div>
             {% endfor %}
         </div>
-        <div class="container place-list m-2 me-3 place_list" id="place_list_ca">
+        <div class="container place-list m-2 me-3 place_list" id="place_list_ca" style="width: 340px;">
             <!--한객체씩의 div-->
             {% for places in places_ca %}
-            <div class="row d-flex flex-row ps-1">
+            <div class="row d-flex flex-row ps-1 justify-content-center align-items-center">
                 <img class="col-3" src="{{places.img.url}}" >
-                    <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
+                    <div class="col-5 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
                         <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
@@ -86,12 +86,12 @@
             </div>
             {% endfor %}
         </div>
-        <div class="container place-list m-2 me-3 place_list" id="place_list_ja">
+        <div class="container place-list m-2 me-3 place_list" id="place_list_ja" style="width: 340px;">
             <!--한객체씩의 div-->
             {% for places in places_ja %}
-            <div class="row d-flex flex-row ps-1">
+            <div class="row d-flex flex-row ps-1 justify-content-center align-items-center">
                 <img class="col-3" src="{{places.img.url}}" >
-                    <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
+                    <div class="col-5 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
                         <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
@@ -100,12 +100,12 @@
             </div>
             {% endfor %}
         </div>
-        <div class="container place-list m-2 me-3 place_list" id="place_list_yeo">
+        <div class="container place-list m-2 me-3 place_list" id="place_list_yeo" style="width: 340px;">
             <!--한객체씩의 div-->
             {% for places in places_yeo %}
-            <div class="row d-flex flex-row ps-1">
+            <div class="row d-flex flex-row ps-1 justify-content-center align-items-center">
                 <img class="col-3" src="{{places.img.url}}" >
-                    <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
+                    <div class="col-5 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
                         <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
@@ -142,7 +142,7 @@
     </div>
 
     <!--complete button-->
-    <div style="padding-left:1rem;">
+    <div style="padding-left:1rem;" class="pb-5">
         <button class="btn complete-btn">코스 확정하기</button>
     </div>
 
