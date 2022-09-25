@@ -36,7 +36,7 @@
             <div style="padding:1.5rem;" class="py-2">
                 <div class="content-list"> <!--overflow-x:scroll;-->
                     {% for place in hash.place_set.all %}
-                        <a href="{% url 'detail' place.id %}"><span class="content-img-container"><img class="content-img" src="{{ place.img.url }}"></span></a>
+                        <a href="{% url 'detail' place.id %}"><span class="content-img-container"><img style="width:200px; height:200px;" class="content-img" src="{{ place.img.url }}"></span></a>
                     {% endfor %}
                 </div>
             </div>
@@ -47,7 +47,7 @@
     <div class="footer-list">
         <span class="footer-icon"><a href="{% url 'main' %}"><img style="width:30px; height:27px;" src="{% static 'img/home.png' %}"></a></span>
         <span class="footer-icon"><a href="{% url 'course' %}"><img style="width:60px; height:60px;" src="{% static 'img/location.png' %}"></a></span>
-        <span class="footer-icon"><a href="{% url 'myfeed' %}"><img style="width:27px; height:35px;" src="{% static 'img/course.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'otherscourse' %}"><img style="width:27px; height:35px;" src="{% static 'img/course.png' %}"></a></span>
     </div>
 </body>
 </html>

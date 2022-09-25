@@ -108,7 +108,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     padding-top: 1.5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2rem
 }
 
 .ap-writer-img{
@@ -610,6 +610,82 @@ input[type="radio"]:checked{
     width: 100px;
     height: 100px;
     padding: 0;
+    object-fit: cover;
+}
+
+/*otherscourse*/
+.otherscourse-header-background{
+    display:flex; 
+    justify-content:center; 
+    align-items:center; 
+    height:5rem; 
+    background-color:white;
+}
+
+.otherscourse-header-text{
+    font-size:20px; 
+    font-weight:bold;
+}
+
+.otherscourse-card-box{
+    display:flex; 
+    flex-direction:column;
+    padding:1rem; 
+    padding-bottom:0;
+}
+
+.otherscourse-card-title{
+    font-weight:bold; 
+    font-size:20px;
+}
+
+.otherscourse-card-text{
+    color:gray; 
+    padding-right:4rem; 
+    font-size:15px;
+}
+
+.otherscourse-other-user{
+    border-radius:10px; 
+    border:0.2px solid lightgray; 
+    box-shadow:0 5px 5px #b89cdb;
+}
+
+.otherscourse-user-box{
+    display:flex; 
+    padding: 1rem 0 0 1rem;
+}
+
+.otherscourse-user-img{
+    border-radius:50px; 
+    height:2.5rem;
+}
+
+.otherscourse-user-id{
+    padding-top:0.5rem; 
+    padding-left:0.5rem; 
+    font-size:18px;
+}
+
+.otherscourse-map-img{
+    padding-left:2rem;
+}
+
+.otherscourse-scrap-box{
+    width:90%; 
+    display:flex; 
+    flex-direction:column; 
+    align-items:end;
+}
+
+.otherscourse-scrap-img{
+    width:30px; 
+    height:30px;
+}
+
+.otherscourse-scrap-text{
+    font-size:10px; 
+    font-weight:bold;
 }
 
 .pic > img{
