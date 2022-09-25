@@ -18,8 +18,8 @@
     <!--posting/writer-->
     <!-- % static 'img/user-img.png' % -->
     <div class="d-flex justify-content-start ap-writer-box ps-4 pe-2 align-items-center">
-        <img class="circle-img" style="height:60px;" src="{{ adminplace.profile_img.url }}">
-        <div class="writer"><p style="margin:0; font-weight:bold; color: white;">{{ adminplace.author }}</p></div>
+        <img class="circle-img" style="height:60px;" src="{{ place.author.profile_img.url }}">
+        <div class="writer"><p style="margin:0; font-weight:bold; color: white;">{{ place.author }}</p></div>
     </div>
     <!--posting-->
     <section class="posting-total-box mt-3">
@@ -27,7 +27,7 @@
         <div id="carouselExampleControls" class="carousel slide carousel-box p-3 pt-0" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active d-flex justify-content-center">
-                    <img class="carousel-img w-100 h-100" src="{{ adminplace.thumbnail.url }}" class="d-block w-100">
+                    <img class="carousel-img w-100 h-100" src="{{ place.img.url }}" class="d-block w-100">
                 </div>
             </div>
         </div>
@@ -36,14 +36,14 @@
         <div class="text-box d-flex justify-content-start">
             <div class="container m-0">
                 <div class="row mt-4">
-                    <h1 class="text-title col-9 p-0 mb-0 align-items-center"><span>{{ adminplace.name }}</span></h1> 
+                    <h1 class="text-title col-9 p-0 mb-0 align-items-center"><span>{{ place.name }}</span></h1> 
                     <div id="liveToastBtn" class="save-box col-2">
-                        {% if adminplace in user.adminplacescrap.all %}
+                        {% if place in user.placescrap.all %}
                         <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-full" src="{% static 'img/full-scrap.png' %}"></div>
-                        <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p></div>
+                        <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ place.scrap_cnt }}</p></div>
                         {% else %}
                         <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}"></div>
-                        <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ adminplace.scrap_cnt }}</p></div>
+                        <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ place.scrap_cnt }}</p></div>
                         {% endif %}
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                {{ adminplace.scrap_cnt|json_script:"scrapcnt" }}
+                {{ place.scrap_cnt|json_script:"scrapcnt" }}
                 <script>
                     const toastTrigger = document.getElementById('liveToastBtn')
                     const toastLiveExample = document.getElementById('liveToast')
@@ -70,11 +70,11 @@
                             let cnt = scrap.innerText*1;
                             if (scrap_btn_empty == null){
                                 cnt -= 1;
-                                toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img style='width: 30px; height: 30px;' class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p></div>"
+                                toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img style='width: 30px; height: 30px;' class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ place.scrap_cnt }}</p></div>"
                                 let param = {'content':'False'}
                                 $.ajax({
                                     type: 'POST',
-                                    url: "{% url 'scrap' adminplace.id %}",
+                                    url: "{% url 'scrap' place.id %}",
                                     headers: {
                                         'X-CSRFTOKEN' : '{{ csrf_token }}'
                                     },
@@ -90,11 +90,11 @@
                             else{
                                 toast.show()
                                 cnt += 1;
-                                toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img style='width: 30px; height: 30px;' class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ adminplace.scrap_cnt }}</p></div>"
+                                toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img style='width: 30px; height: 30px;' class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ place.scrap_cnt }}</p></div>"
                                 let param = {'content':'True'}
                                 $.ajax({
                                     type: 'POST',
-                                    url: "{% url 'scrap' adminplace.id %}",
+                                    url: "{% url 'scrap' place.id %}",
                                     headers: {
                                         'X-CSRFTOKEN' : '{{ csrf_token }}'
                                     },
@@ -114,23 +114,23 @@
                     )}
                 </script>
                 <div class="text-content row mb-2">
-                    {{adminplace.description|linebreaks}}
+                    {{place.description|linebreaks}}
                 </div>
                 <!-- <p class="text-content row" style="padding:0;">{{adminplace.description|linebreaks}}</p> -->
                 <div class="row">
                     <div class="type-box col-3 d-flex p-0">
-                        {% if adminplace.category == "자연" %}
+                        {% if place.category == "자연" %}
                         <span><img src="{% static 'img/category-nature.png' %}"></span>
-                        {% elif adminplace.category == "카페" %}
+                        {% elif place.category == "카페" %}
                         <span><img src="{% static 'img/category-cafe.png' %}"></span>
-                        {% elif adminplace.category == "식당" %}
+                        {% elif place.category == "식당" %}
                         <span><img src="{% static 'img/category-cafeteria.png' %}"></span>
-                        {% elif adminplace.category == "여가/활동" %}
+                        {% elif place.category == "여가/활동" %}
                         <span><img src="{% static 'img/category-activity.png' %}"></span>
                         {% else %}
                         <span><img src="{% static 'img/category-nature.png' %}"></span>
                         {% endif %}
-                        <span class="type-text">{{adminplace.category}}</span>
+                        <span class="type-text">{{place.category}}</span>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@
     <!--comment-->
     <div class="comment-card pt-4">
         <h3 class="pb-3" style="font-weight: bold;">댓글</h3>
-        {% for comment in adminplace.adminplacecomment_set.all %}
+        {% for comment in place.placecomment_set.all %}
             <div class="comment-box">
                 <img class="comment-img" src="{{ comment.author.profile_img.url }}">
                 <div class="comment-writer">

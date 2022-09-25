@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render, redirect
-from .models import HashRecommend, AdminPlace, AdminPlaceComment, Course
+from .models import HashRecommend, PlaceComment, Course, Place
 from django.http import HttpResponse, JsonResponse
 
 # Create your views here.
@@ -8,14 +8,14 @@ def main(request):
     hashs = HashRecommend.objects.all()
     return render(request, 'home.html', {'hashs':hashs})
 
-def detail(request, adminplace_id):
-    adminplace = AdminPlace.objects.get(pk=adminplace_id)
+def detail(request, place_id):
+    place = Place.objects.get(pk=place_id)
     if request.method == 'POST':
         comment = request.POST['text']
         if (comment is not None) and (comment != ""):
-            AdminPlaceComment.objects.create(author=request.user, text=comment, adminplace=adminplace)
+            PlaceComment.objects.create(author=request.user, text=comment, place=place)
                  
-    return render(request, 'detail.html', {'adminplace':adminplace})
+    return render(request, 'detail.html', {'place':place})
 
 def course(request):
     return render(request, 'course.html')
@@ -40,20 +40,21 @@ def postdetail(request, course_id):
     return render(request, 'postdetail.html', {"course":course})
 
 def myfeed(request):
+    # places = request.user.course_set.all().place.all()
     return render(request, 'myfeed.html')
 
-def scrap(request, course_id):
+def scrap(request, place_id):
     jsonObject = json.loads(request.body)
-    adminplace = AdminPlace.objects.get(pk=course_id)
+    place = Place.objects.get(pk=place_id)
     content = jsonObject.get('content')
     if content == "True":
-        adminplace.scrap_cnt += 1
-        adminplace.save()
-        request.user.adminplacescrap.add(adminplace)
+        place.scrap_cnt += 1
+        place.save()
+        request.user.placescrap.add(place)
     else:
-        adminplace.scrap_cnt -= 1
-        adminplace.save()
-        request.user.adminplacescrap.remove(adminplace)
+        place.scrap_cnt -= 1
+        place.save()
+        request.user.placescrap.remove(place)
 
     return JsonResponse({'content':content})
 

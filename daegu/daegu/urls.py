@@ -22,13 +22,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name="main"),
-    path('detail/<int:adminplace_id>', views.detail, name="detail"),
+    path('detail/<int:place_id>', views.detail, name="detail"),
     path('account/', include('account.urls')),
     path('course/', views.course, name="course"),
     path('postcreate/<int:course_id>', views.postcreate, name="postcreate"),
     path('postdetail/<int:course_id>', views.postdetail, name="postdetail"),
     path('myfeed/', views.myfeed, name="myfeed"),
-    path('scrap/<int:course_id>', views.scrap, name="scrap"),
+    path('scrap/<int:place_id>', views.scrap, name="scrap"),
     path('setcourse/', views.setcourse, name="setcourse")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

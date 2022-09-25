@@ -598,3 +598,16 @@ input[type="radio"]:checked{
 .place-list > hr{
     margin: 10px;
 }
+
+.pic-container{
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.pic{
+    width: 118px;
+    height: 118px;
+    padding: 0;
+    object-fit: cover;
+}

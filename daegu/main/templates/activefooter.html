@@ -13,15 +13,16 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </head>
 <body>
     {% block content %}
     {% endblock %}
     <!--footer-->
     <div class="footer-list">
-        <span class="footer-icon"><a href="{% url 'main' %}"><img style="width:30px; height:27px;" src="{% static 'img/home.png' %}"></a></span>
-        <span class="footer-icon"><a href="{% url 'course' %}"><img style="width:60px; height:60px;" src="{% static 'img/location.png' %}"></a></span>
-        <span class="footer-icon"><a href="{% url 'myfeed' %}"><img style="width:27px; height:35px;" src="{% static 'img/course.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'main' %}"><img style="width:30px; height:27px;" src="{% static 'img/active-home.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'course' %}"><img style="width:60px; height:60px;" src="{% static 'img/active-location.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'myfeed' %}"><img style="width:27px; height:35px;" src="{% static 'img/active-course.png' %}"></a></span>
     </div>
 </body>
 </html>
