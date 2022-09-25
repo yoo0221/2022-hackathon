@@ -73,6 +73,7 @@ def setcourse(request):
     places_ca = request.user.placescrap.all().filter(category="카페")
     places_ja = request.user.placescrap.all().filter(category="자연")
     places_yeo = request.user.placescrap.all().filter(category="여가/활동")
+    courses = Course.objects.all().order_by('scrap_cnt')
     print(places_sick)
     print(places_ca)
     print(places_ja)
@@ -81,7 +82,8 @@ def setcourse(request):
         {"places_sick" : places_sick,
         "places_ca" : places_ca,
         "places_ja" : places_ja,
-        "places_yeo" : places_yeo}) 
+        "places_yeo" : places_yeo,
+        "courses" : courses}) 
 
 def scrapcourse(request, course_id):
     jsonObject = json.loads(request.body)
