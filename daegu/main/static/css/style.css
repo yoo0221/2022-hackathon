@@ -591,10 +591,23 @@ input[type="radio"]:checked{
     box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
     height: 170px;
     white-space: nowrap;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding-bottom: 10px;
+    position:absolute;
 }
 
 .place-list > hr{
     margin: 10px;
+}
+
+.map {
+    position: relative;
+    height:313px;
+    width:272px;
+}
+
+.marker {
+    position: absolute;
+    width:22px;
+    height:31px;
 }
