@@ -20,24 +20,139 @@
     <div class="otherscourse-header-background"><h1 class="otherscourse-header-text">다른 사람 코스 보기</h1></div>
 
     <!--card-->
-    <div class="otherscourse-card-box">
-        <h1 class="otherscourse-card-title">대구 핫플 완전 정복하기</h1>
-        <p class="otherscourse-card-text">순곱이네 곱창전골 → 오디너리하우스 → 이월드</p>
+    {% for course in courses %}
+    <div class="otherscourse-card-box mb-5">
+        <h1 class="otherscourse-card-title">{{course.name}}</h1>
+        <p class="otherscourse-card-text">{% for place in course.place.all %} {{place.name}} -> {% endfor %}</p>
+        <div class="otherscourse-other-user">
+            
+        <div class="otherscourse-user-box">
+            <img src="{{course.user.profile_img.url}}" class="otherscourse-user-img">
+            <h1 class="map-title otherscourse-user-id">{{course.user}}</h1>
+        </div>
         <a href="{% url 'otherscourseDetail' %}" style="color:black; text-decoration:none;">
-            <div class="otherscourse-other-user">
-                <div class="otherscourse-user-box">
-                    <img src="{% static 'img/user-img.png' %}" class="otherscourse-user-img">
-                    <h1 class="map-title otherscourse-user-id">min_ji</h1>
+            <div>
+                <div style="padding:2rem;"style="position: relative;">
+                    <div class="map">
+                        <img src="{% static 'img/map.png' %}" style=" position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1;">
+                        <canvas id="myCanvas" width="272" height="313"></canvas>
+                        <!--이제 마커이미지들 렌더링-->
+                        {% for place in course.place.all %}
+                            {% if place.category is "식당" %}
+                            <img src="{%static 'img/marker-res.png'%}" class="marker" id="marker_{{place.id}}">
+                            {% elif place.category is "카페" %}
+                            <img src="{%static 'img/marker-cafe.png'%}" class="marker" id="marker_{{place.id}}">
+                            {% elif place.category is "자연" %}
+                            <img src="{%static 'img/marker-natural.png'%}" class="marker" id="marker_{{place.id}}">
+                            {% elif place.category is "여가/활동"%}
+                            <img src="{%static 'img/marker-yeo.png'%}" class="marker" id="marker_{{place.id}}">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
-                <img src="{% static 'img/map.png' %}" class="otherscourse-map-img">
-                <!--others-course-scrap-b0x-->
-                <div style="padding-left:16rem; padding-bottom:1rem;">
-                    <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}"></div>
-                    <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">200</p></div>
-                </div>
-            </div>
+            </div>   <!--others-course-scrap-b0x-->
         </a>
+        <div style="padding-left:6rem; padding-bottom: 6rem;">
+            <div id="liveToastBtn" name="{{course.id}}" class="save-box col-2">
+                {% if course in user.coursescrap.all %}
+                <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-full" src="{% static 'img/full-scrap.png' %}"></div>
+                <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ course.scrap_cnt }}</p></div>
+                {% else %}
+                <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}"></div>
+                <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">{{ course.scrap_cnt }}</p></div>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+        </div>
+        
+        
     </div>
+    {% endfor %}
+
+    <script>
+        var DeaguLDX=128.34930124091187
+        var DeaguLDY=35.605941387338426
+        var DeaguW=0.41653991722771
+        var DeaguH=0.409277215704108
+        //렌더링된 마커들의 실제좌표 x,y를 이용해 사진상에 맞게 축소후 재배치
+        {% for place in course.place.all %}
+            $("#marker_{{place.id}}").css("left", String(Math.round(({{place.lng}}-DeaguLDX)(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px");
+            $("#marker_{{place.id}}").css("bottom", String(Math.round(({{place.lat}}-DeaguLDY)(parseInt($(".map").css("height")))/DeaguH))+"px");
+            console.log(String(Math.round(({{place.lng}}-DeaguLDX)(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2))
+            console.log(String(Math.round(({{place.lat}}-DeaguLDY)(parseInt($(".map").css("height")))/DeaguH)))
+        {% endfor %}
+        // {% for places in placesca %}
+        //     $("#marker{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+        //     $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)(parseInt($(".map").css("height")))/DeaguH))+"px")
+        // {% endfor %}
+        // {% for places in placesja %}
+        //     $("#marker{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+        //     $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)(parseInt($(".map").css("height")))/DeaguH))+"px")
+        // {% endfor %}
+        // {% for places in placesyeo %}
+        //     $("#marker{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+        //     $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)(parseInt($(".map").css("height")))/DeaguH))+"px")
+        // {% endfor %}
+    </script>
+    <script>
+        const toastTrigger = document.getElementById('liveToastBtn')
+        // const toastLiveExample = document.getElementById('liveToast')
+        let scrap = document.getElementById('scrap')
+        if (toastTrigger) {
+            toastTrigger.addEventListener('click', () => {
+                const scrap_btn_empty = document.getElementById('scrap-btn-empty')
+                const scrap_btn_full = document.getElementById('scrap-btn-full')
+                // const toast = new bootstrap.Toast(toastLiveExample)
+                let cnt = scrap.innerText*1;
+                if (scrap_btn_empty == null){
+                    cnt -= 1;
+                    toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img style='width: 30px; height: 30px;' class='save-img row' id='scrap-btn-empty' src='{% static 'img/bin-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ course.scrap_cnt }}</p></div>"
+                    id = toastTrigger.getAttribute('name')
+                    console.log(id)
+                    let param = {'content':'False'}
+                    $.ajax({
+                        type: 'POST',
+                        url: "/scrapcourse/"+id,
+                        headers: {
+                            'X-CSRFTOKEN' : '{{ csrf_token }}'
+                        },
+                        data: JSON.stringify(param),
+                        success: function (response) {
+                            console.log("success")
+                        },
+                        error: function (response) {
+                            // alert the error if any error occured
+                        }
+                    })
+                }
+                else{
+                    cnt += 1;
+                    toastTrigger.innerHTML="<div class='d-flex align-items-center justify-content-center'><img style='width: 30px; height: 30px;' class='save-img row' id='scrap-btn-full' src='{% static 'img/full-scrap.png' %}'></div><div class='d-flex align-items-center justify-content-center'><p class='save-text row' id='scrap'>{{ course.scrap_cnt }}</p></div>"
+                    id = toastTrigger.getAttribute('name')
+                    console.log(id)
+                    let param = {'content':'True'}
+                    $.ajax({
+                        type: 'POST',
+                        url: "/scrapcourse/"+id,
+                        headers: {
+                            'X-CSRFTOKEN' : '{{ csrf_token }}'
+                        },
+                        data: JSON.stringify(param),
+                        success: function (response) {
+                            console.log("success")
+                        },
+                        error: function (response) {
+                            // alert the error if any error occured
+                        }
+                    })
+                }
+                console.log(cnt)
+                scrap = document.getElementById('scrap')
+                scrap.innerText = cnt   
+            }
+        )}
+    </script>
 
 
     <!--footer-->
