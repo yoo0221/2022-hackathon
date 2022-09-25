@@ -158,9 +158,15 @@
                     </div>
                 </div>
             </div>
-            <div style="display:flex; justify-content:end; padding:1rem; padding-bottom:0;">
-                <div id="next-btn" class="new-search-site-nextButton-box">
+            <div style="display:flex; justify-content:space-between; padding:1rem; padding-bottom:0;">
+                <div id="prior-btn" class="new-search-site-priorButton-box">
+                    <button class="btn" style="background:#545157; color:white; width:6rem; height:2rem; padding-top:0;">이전</button>
+                </div>
+                <div id="next-btn" class="new-search-site-nextButton-box" style="position:fixed; right:0; padding-right:1rem;">
                     <button class="btn" style="background:#545157; color:white; width:6rem; height:2rem; padding-top:0;">다음</button>
+                </div>
+                <div id="register-btn" class="new-search-site-register-box" style="position:fixed; right:0; padding-right:1rem;">
+                    <button class="btn" style="background:#545157; color:white; width:6rem; height:2rem; padding-top:0;">등록</button>
                 </div>
                 <div id="nex-btn-temp" style="height:2rem; padding-top:0;"></div>
             </div>
@@ -305,6 +311,12 @@
         const nextBtn = function() {
             document.querySelector('#next-btn').classList.toggle('active')
         }
+        const priorBtn = function() {
+            document.querySelector('#prior-btn').classList.toggle('active')
+        }
+        const registerBtn = function() {
+            document.querySelector('#register-btn').classList.toggle('active')
+        }
         const selectTypeModal = function() {
             document.querySelector('#select-type-modal').classList.toggle('active')
         }
@@ -324,6 +336,21 @@
 
         const nextButton = document.querySelector('#next-btn')
         nextButton.addEventListener('click', selectTypeModal)
+        nextButton.addEventListener('click', priorBtn)
+        nextButton.addEventListener('click', registerBtn)
+
+        const priorButton = document.querySelector('#prior-btn')
+        priorButton.addEventListener('click', registerBtn)
+        priorButton.addEventListener('click', selectTypeModal)
+        priorButton.addEventListener('click', priorBtn)
+
+        const registerButton = document.querySelector('#register-btn')
+        registerButton.addEventListener('click', priorBtn)
+        registerButton.addEventListener('click', nextBtn)
+        registerButton.addEventListener('click', selectTypeModal)
+        registerButton.addEventListener('click', modalResult)
+        registerButton.addEventListener('click', modalToggle)
+        registerButton.addEventListener('click', registerBtn)
     </script>
 </div>
 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">hi</div>

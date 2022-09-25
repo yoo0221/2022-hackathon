@@ -353,6 +353,14 @@
     display:none;
 }
 
+.new-search-site-priorButton-box{
+    display:none;
+}
+
+.new-search-site-register-box{
+    display:none;
+}
+
 .new-search-site-nextButton{
     background:#545157; 
     color:white; 
@@ -405,14 +413,14 @@
 }
 
 .select-type-box{
-    border-radius:13px !important;
-    display:flex !important; 
-    align-items:center !important; 
-    justify-content:space-around !important;
-    padding:0 1rem !important;
-    width:4.8rem !important; 
-    height:2rem !important; 
-    box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
+    border-radius:13px!important;
+    display:flex!important; 
+    align-items:center!important; 
+    justify-content:space-around!important;
+    padding:0 1rem!important;
+    width:4.8rem!important; 
+    height:2rem!important; 
+    box-shadow:0px 5px 5px rgb(129, 72, 129)!important;
 }
 
 .select-type-box-larger{
