@@ -60,3 +60,9 @@ def scrap(request, place_id):
 
 def setcourse(request):
     return render(request, 'setcourse.html')    
+
+def otherscourse(request):
+    return render(request, 'otherscourse.html')
+
+def otherscourseDetail(request):
+    return render(request, "otherscourse-detail.html")

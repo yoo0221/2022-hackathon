@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="d-flex justify-content-start ap-writer-box ps-2 pe-2 align-items-center">
+        <img src="{% static 'img/arrow-left-white.png' %}">
+        <img class="circle-img" style="height:60px;" src="{{ place.author.profile_img.url }}">
+        <div class="writer"><p style="margin:0; font-weight:bold; color: white;">min_ji</p></div>
+    </div>
+
+    <!--title-->
+    <div class="otherscourse-card-box" style="padding-top:2rem;">
+        <h1 class="otherscourse-card-title">대구 핫플 완전 정복하기</h1>
+        <div style="display:flex;">
+            <p class="otherscourse-card-text" style="padding-right:2.5rem;">순곱이네 곱창전골 → 오디너리하우스 → 이월드</p>
+            <div style="margin-right:1rem;">
+                <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}"></div>
+                <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">200</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!--card-->
+    <div style="display:flex; flex-direction:column; padding-top:1rem;">
+        <div style="display:flex; justify-content:center;">
+            <img src="{% static 'img/gopchang.png' %}" style="width:320px; height:320px;">
+        </div>
+        <div style="display:flex; flex-direction:column; padding: 1rem;">
+            <h1 style="font-weight:bold; font-size:20px;">순곱이네 곱창전골</h1>
+            <p>곱도 가득 차있고 여기 너무 맛있음 벌써 3번째 방문임</p>
+        </div>
+    </div>
+
+
+    <!--footer-->
+    <div class="footer-list">
+        <span class="footer-icon"><a href="{% url 'main' %}"><img style="width:30px; height:27px;" src="{% static 'img/home.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'course' %}"><img style="width:60px; height:60px;" src="{% static 'img/location.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'otherscourse' %}"><img style="width:27px; height:35px;" src="{% static 'img/course.png' %}"></a></span>
+    </div>
+</body>
+</html>
