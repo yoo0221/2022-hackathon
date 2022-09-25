@@ -33,5 +33,6 @@ urlpatterns = [
     path('setcourse/', views.setcourse, name="setcourse"),
     path('otherscourse/', views.otherscourse, name="otherscourse"),
     path('otherscourseDetail/', views.otherscourseDetail, name="otherscourseDetail"),
+    path('scrapcourse/<int:course_id>', views.scrapcourse, name="scrapcourse"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
