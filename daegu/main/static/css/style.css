@@ -545,9 +545,9 @@ input[type="radio"]:checked{
     background-image: url('/static/img/header-post.png');
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 1.6rem;
     padding-bottom: 2.0rem;
     padding-top: 1.2rem;
+    padding-left: 1rem !important;
     /* padding-top: 0.5rem; */
 }
 
@@ -591,26 +591,15 @@ input[type="radio"]:checked{
     box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
     height: 170px;
     white-space: nowrap;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding-bottom: 10px;
-    position:absolute;
+    opacity: 0.5;
 }
 
 .place-list > hr{
     margin: 10px;
 }
 
-.map {
-    position: relative;
-    height:313px;
-    width:272px;
-}
-
-.marker {
-    position: absolute;
-    width:22px;
-    height:31px;
-}
 .pic-container{
     width: 100%;
     padding-left: 1rem;
@@ -618,8 +607,32 @@ input[type="radio"]:checked{
 }
 
 .pic{
-    width: 118px;
-    height: 118px;
+    width: 100px;
+    height: 100px;
     padding: 0;
-    object-fit: cover;
 }
+
+.pic > img{
+    object-fit: contain;
+}
+
+.myfeed-header{
+    display:flex; 
+    /* align-items: center; */
+    padding-bottom: 2rem;
+    padding-left: 0.7rem;
+}
+
+.course-card{
+    display: relative;
+    border: 0.5px solid gray;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    padding-top: 0.7rem;
+}
+
+.small-pic{
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+
