@@ -28,30 +28,30 @@
         <!--카테고리 버튼들-->
         <div class="category-list d-flex align-items-center">
             <span class="category-container">
-                <button type="button" class="btn type-box" name="sick" style="margin-left:1rem;">
+                <button type="button" class="btn type-box" name="sick">
                     <div><img src="{% static 'img/restaurant.png' %}" style="padding:0 0.2rem;"></div>
-                    <p class="type-text" style="padding:0 0.2rem;">식당</p>
+                    <p class="type-text">식당</p>
                     <p class="type-text" style="padding:0 0.2rem;">{{places_sick|length}}</p>
                 </button>
             </span>
             <span class="category-container">
-                <button type="button" class="btn type-box" name="ca" style="margin-left:1rem;">
+                <button type="button" class="btn type-box" name="ca">
                     <div><img src="{% static 'img/cafe.png' %}" style="padding:0 0.2rem;"></div>
-                    <p class="type-text" style="padding:0 0.2rem;">카페</p>
+                    <p class="type-text">카페</p>
                     <p class="type-text" style="padding:0 0.2rem;">{{places_ca|length}}</p>
                 </button>
             </span>
             <span class="category-container">
-                <button type="button" class="btn type-box" name="ja" style="margin-left:1rem;">
+                <button type="button" class="btn type-box" name="ja">
                     <div><img src="{% static 'img/nature.png' %}" style="padding:0 0.2rem;"></div>
-                    <p class="type-text" style="padding:0 0.2rem;">자연</p>
+                    <p class="type-text">자연</p>
                     <p class="type-text" style="padding:0 0.2rem;">{{places_ja|length}}</p>
                 </button>
             </span>
             <span class="category-container">
-                <button type="button" class="btn type-box" name="yeo" style="margin-left:1rem;">
+                <button type="button" class="btn type-box" name="yeo">
                     <div><img src="{% static 'img/hobby.png' %}" style="padding:0 0.2rem;"></div>
-                    <p class="type-text" style="padding:0 0.2rem;">여가/활동</p>
+                    <p class="type-text">여가/활동</p>
                     <p class="type-text" style="padding:0 0.2rem;">{{places_yeo|length}}</p>
                 </button>
             </span>
@@ -192,19 +192,19 @@
                         <hr>
                         <h1 style="font-weight:bold; font-size:15px; padding-left:1rem;">장소 유형을 선택해주세요.</h1>
                         <div style="display:flex; padding-top:1rem;">
-                            <button type="button" class="btn select-type-box">
+                            <button id="selected-btn1" type="button" class="btn select-type-box">
                                 <div><img src="{% static 'img/restaurant.png' %}" style="width:17px; height:17px;"></div>
                                 <p class="type-text">식당</p>
                             </button>
-                            <button type="button" class="btn select-type-box" style="margin-left:0.2rem;">
+                            <button id="selected-btn2" type="button" class="btn select-type-box">
                                 <div><img src="{% static 'img/cafe.png' %}" style="width:17px; height:17px;"></div>
                                 <p class="type-text">카페</p>
                             </button>
-                            <button type="button" class="btn select-type-box" style="margin-left:0.2rem;">
+                            <button id="selected-btn3" type="button" class="btn select-type-box">
                                 <div><img src="{% static 'img/nature.png' %}" style="width:17px; height:17px;"></div>
                                 <p class="type-text">자연</p>
                             </button>
-                            <button type="button" class="btn select-type-box-larger" style="margin-left:0.2rem;">
+                            <button id="selected-btn4" type="button" class="btn select-type-box-larger">
                                 <div><img src="{% static 'img/hobby.png' %}" style="width:17px; height:17px;"></div>
                                 <p class="type-text">여가/활동</p>
                             </button>
@@ -323,6 +323,19 @@
         const searchMent = function() {
             document.querySelector('#search-ment').classList.toggle('hidden')
         }
+        const selectedBtn1 = function() {
+            document.querySelector('#selected-btn1').classList.toggle('click')
+        }
+        const selectedBtn2 = function() {
+            document.querySelector('#selected-btn2').classList.toggle('click')
+        }
+        const selectedBtn3 = function() {
+            document.querySelector('#selected-btn3').classList.toggle('click')
+        }
+        const selectedBtn4 = function() {
+            document.querySelector('#selected-btn4').classList.toggle('click')
+        }
+
         const modalBtn = document.querySelector('#modalBtn')
         modalBtn.addEventListener('click', modalToggle)
 
@@ -351,9 +364,53 @@
         registerButton.addEventListener('click', modalResult)
         registerButton.addEventListener('click', modalToggle)
         registerButton.addEventListener('click', registerBtn)
+        registerButton.addEventListener('click', searchMent)
+
+        const showSelected1 = document.querySelector('#selected-btn1')
+        showSelected1.addEventListener('click', selectedBtn1)
+
+        const showSelected2 = document.querySelector('#selected-btn2')
+        showSelected2.addEventListener('click', selectedBtn2)
+
+        const showSelected3 = document.querySelector('#selected-btn3')
+        showSelected3.addEventListener('click', selectedBtn3)
+
+        const showSelected4 = document.querySelector('#selected-btn4')
+        showSelected4.addEventListener('click', selectedBtn4)
     </script>
 </div>
-<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">hi</div>
+
+<!--tab two-->
+<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+    {% for course in user.course_set.all %}
+    <a href="{% url 'postdetail' course.id %}" style="text-decoration: none;">
+        <div class="course-card m-3" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), url('{{course.thumbnail.url}}'); background-repeat:norepeat; background-size:cover; color: white;">
+            <div class="d-flex flex-column justify-content-start myfeed-header pb-2">
+                <div class="mb-2">
+                    <img class="circle-img" style="height:60px;" src="{{ user.profile_img.url }}">
+                    <span class="writer" style="margin:0; font-weight:bold; color: white;">{{ user }}</span>
+                </div>
+                <div>
+                    <h4>{{course.name}}</h4>
+                </div>
+                <div class="mb-2">
+                    {% for place in course.place.all %}
+                        {{place.name}} →
+                    {% endfor %}
+                </div>
+                <div class="mb-2">
+                    {% for place in course.place.all %}
+                        <span class="small-pic"><img style="width: 40px; height: 40px;" src="{{place.img.url}}" alt=""></span>
+                    {% endfor %}
+                </div>
+                <div class="d-flex justify-content-end pe-2">
+                    {{course.hashtag}}
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
 
 </div>
 
