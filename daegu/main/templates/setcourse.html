@@ -62,10 +62,10 @@
             <!--한객체씩의 div-->
             {% for places in places_sick %}
             <div class="row d-flex flex-row ps-1">
-                <img class="col-3" src="{{places.thumbnail.url}}" >
+                <img class="col-3" src="{{places.img.url}}" >
                     <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
-                        <p style="font-size:14px; margin:0;">{{places.location}}</p>
+                        <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
                     <input class="col-1 place_checkbox" type="checkbox" id="checkbox_{{places.id}}" style="width:2rem;">
                 <hr>
@@ -76,10 +76,10 @@
             <!--한객체씩의 div-->
             {% for places in places_ca %}
             <div class="row d-flex flex-row ps-1">
-                <img class="col-3" src="{{places.thumbnail.url}}" >
+                <img class="col-3" src="{{places.img.url}}" >
                     <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
-                        <p style="font-size:14px; margin:0;">{{places.location}}</p>
+                        <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
                     <input class="col-1 place_checkbox" type="checkbox" id="checkbox_{{places.id}}" style="width:2rem;">
                 <hr>
@@ -90,10 +90,10 @@
             <!--한객체씩의 div-->
             {% for places in places_ja %}
             <div class="row d-flex flex-row ps-1">
-                <img class="col-3" src="{{places.thumbnail.url}}" >
+                <img class="col-3" src="{{places.img.url}}" >
                     <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
-                        <p style="font-size:14px; margin:0;">{{places.location}}</p>
+                        <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
                     <input class="col-1 place_checkbox" type="checkbox" id="checkbox_{{places.id}}" style="width:2rem;">
                 <hr>
@@ -104,10 +104,10 @@
             <!--한객체씩의 div-->
             {% for places in places_yeo %}
             <div class="row d-flex flex-row ps-1">
-                <img class="col-3" src="{{places.thumbnail.url}}" >
+                <img class="col-3" src="{{places.img.url}}" >
                     <div class="col-6 d-flex flex-column justify-content-center ps-1 me-3">
                         <h1 style="font-size:18px; margin:0; font-weight:bold; padding-bottom:0.2rem;">{{places.name}}</h1>
-                        <p style="font-size:14px; margin:0;">{{places.location}}</p>
+                        <p style="font-size:14px; margin:0;">{{places.address}}</p>
                     </div>
                     <input class="col-1 place_checkbox" type="checkbox" id="checkbox_{{places.id}}" style="width:2rem;">
                 <hr>
@@ -120,7 +120,7 @@
     <div style="height:170px"></div>
 
     <!--지도 부분 -> 1. 지도 / 2. 마커 / 3. 경로-->
-    <div style="padding:2rem;">
+    <div style="padding:2rem;"style="position: relative;">
         <h1 class="map-title">대구 지도</h1>
         <div class="map">
         <img src="{% static 'img/map.png' %}" style=" position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: -1;">
@@ -228,16 +228,16 @@
             $(".place_list").hide();
             switch($(this).attr("name")){
                 case "sick":
-                    $("#place_list_sick").show(100);
+                    $("#place_list_sick").show();
                     break;
                 case "ca":
-                    $("#place_list_ca").show(100);
+                    $("#place_list_ca").show();
                     break;
                 case "ja":
-                    $("#place_list_ja").show(100);
+                    $("#place_list_ja").show();
                     break;
                 case "yeo":
-                    $("#place_list_yeo").show(100);
+                    $("#place_list_yeo").show();
                     break;
             }
         });
@@ -248,22 +248,21 @@
         var DeaguH=0.409277215704108
         //렌더링된 마커들의 실제좌표 x,y를 이용해 사진상에 맞게 축소후 재배치
         {% for places in places_sick %}
-            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.Lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
-            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.Lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
+            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
         {% endfor %}
         {% for places in places_ca %}
-            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.Lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
-            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.Lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
+            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
         {% endfor %}
         {% for places in places_ja %}
-            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.Lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
-            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.Lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
+            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
         {% endfor %}
         {% for places in places_yeo %}
-            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.Lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
-            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.Lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
+            $("#marker_{{places.id}}").css("left", String(Math.round(({{places.lng}}-DeaguLDX)*(parseInt($(".map").css("width")))/DeaguW) - parseInt($(".marker").css("width"))/2)+"px")
+            $("#marker_{{places.id}}").css("bottom", String(Math.round(({{places.lat}}-DeaguLDY)*(parseInt($(".map").css("height")))/DeaguH))+"px")
         {% endfor %}
-
         
         //체크박스 활성화 했을 때 이벤트핸들러 -> 1. 지도상에 마커띄움 / 2. 이전걸 참고해 경로그리기
         let coord2s_checked =[];
@@ -278,7 +277,8 @@
             ctx.lineCap="round"
             ctx.lineJoin="round"
             var checkid = String($(this).attr("id").substring(9));
-            var checkxy = [String(parseInt($("#marker_"+checkid).css("left"))+parseInt($(".marker").css("width"))/2), String(canvas.height - parseInt($("#marker_"+checkid).css("bottom")))]
+            console.log(checkid);
+            var checkxy = [String(parseInt($("#marker_"+checkid).css("left"))+parseInt($(".marker").css("width"))/2), String(canvas.height - parseInt($("#marker_"+checkid).css("bottom")))];
             $("#marker_"+checkid).toggle(200);
             if ( $(this).prop('checked') ) {
                 coord2s_checked.push(checkxy);
