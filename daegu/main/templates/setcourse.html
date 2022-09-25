@@ -143,7 +143,7 @@
 
     <!--complete button-->
     <div style="padding-left:1rem;" class="pb-5">
-        <button class="btn complete-btn">코스 확정하기</button>
+        <a href="{%url "coursecheck"%}"><button disabled="disabled" class="btn complete-btn">코스 확정하기</button></a>
     </div>
 
     <!--new search site-->
@@ -276,26 +276,40 @@
             ctx.lineWidth=3
             ctx.lineCap="round"
             ctx.lineJoin="round"
+            ctx.setLineDash([10, 8]);
             var checkid = String($(this).attr("id").substring(9));
-            console.log(checkid);
-            var checkxy = [String(parseInt($("#marker_"+checkid).css("left"))+parseInt($(".marker").css("width"))/2), String(canvas.height - parseInt($("#marker_"+checkid).css("bottom")))];
+            console.log("지금 체크이벤트가 일어난 장소 id : "+checkid);
+            var checkxy = [String(parseInt($("#marker_"+checkid).css("left"))+parseInt($(".marker").css("width"))/2), String(canvas.height - parseInt($("#marker_"+checkid).css("bottom"))), ];
             $("#marker_"+checkid).toggle(200);
             if ( $(this).prop('checked') ) {
                 coord2s_checked.push(checkxy);
+                if(coord2s_checked.length == 2){
+                    $(".complete-btn").attr("disabled", false);
+                    //$(".complete-btn").css("background-color", "rgb(69, 12, 141)").fadeOut(500).fadeIn(500);
+                }
             } else {
                 for(let i = 0; i<coord2s_checked.length; i++){
                     if(coord2s_checked[i][0] == checkxy[0] && coord2s_checked[i][1] == checkxy[1]){
                         coord2s_checked.splice(i, 1);
                     }
                 }
+                if(coord2s_checked.length == 1){
+                    $(".complete-btn").attr("disabled", true);
+                    //$(".complete-btn").css("background-color", "#545157").fadeOut(500).fadeIn(500);
+                
+                }
             }
+            console.log(coord2s_checked);
             for(let i = 1; i<coord2s_checked.length; i++){
                 ctx.moveTo(coord2s_checked[i-1][0], coord2s_checked[i-1][1]);
                 ctx.lineTo(coord2s_checked[i][0], coord2s_checked[i][1]);
                 ctx.stroke();
             }
-        });
 
+            localStorage.setItem("list_coords", coord2s_checked)
+            console.log(localStorage.getItem("list_coords"));
+        });
+        
         const modalToggle = function() {
             document.querySelector('#modal-box').classList.toggle('active')
         }

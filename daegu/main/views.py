@@ -20,6 +20,9 @@ def detail(request, place_id):
 def course(request):
     return render(request, 'course.html')
 
+def coursecheck(request):
+    return render(request, "coursecheck.html")
+
 def postcreate(request, course_id):
     course = Course.objects.get(pk=course_id)
     if request.method == "POST":
