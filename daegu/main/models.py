@@ -34,6 +34,7 @@ class Course(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     hashtag=models.CharField(max_length=100, null=True, blank=True)
     scrapper=models.ManyToManyField(User, blank=True, related_name="coursescrap")
+    thumbnail=models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -46,7 +47,7 @@ class Place(models.Model):
     address=models.CharField(max_length=100)
     description=models.TextField(null=True, blank=True)
     category=models.CharField(max_length=20,null=True)
-    hashtag=models.ForeignKey(HashRecommend, on_delete=models.CASCADE, null=True)
+    hashtag=models.ForeignKey(HashRecommend, on_delete=models.CASCADE, null=True, blank=True)
     lat=models.FloatField()
     lng=models.FloatField()
     course=models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True, related_name="place")
