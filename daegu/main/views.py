@@ -17,6 +17,14 @@ def detail(request, place_id):
                  
     return render(request, 'detail.html', {'place':place})
 
+def otherscourse(request):
+    courses = Course.objects.all().order_by('scrap_cnt')
+    print(courses.place.all())
+    return render(request, 'otherscourse.html', {"courses":courses})
+
+def otherscourseDetail(request):
+    return render(request, "otherscourse-detail.html")
+
 def course(request):
     return render(request, 'course.html')
 
@@ -73,8 +81,17 @@ def setcourse(request):
         "places_ja" : places_ja,
         "places_yeo" : places_yeo}) 
 
-def otherscourse(request):
-    return render(request, 'otherscourse.html')
+def scrapcourse(request, course_id):
+    jsonObject = json.loads(request.body)
+    course = Course.objects.get(pk=course_id)
+    content = jsonObject.get('content')
+    if content == "True":
+        course.scrap_cnt += 1
+        course.save()
+        request.user.coursescrap.add(course)
+    else:
+        course.scrap_cnt -= 1
+        course.save()
+        request.user.coursescrap.remove(course)
 
-def otherscourseDetail(request):
-    return render(request, "otherscourse-detail.html")
+    return JsonResponse({'content':content})
