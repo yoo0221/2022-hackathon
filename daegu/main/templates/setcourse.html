@@ -127,16 +127,16 @@
         <canvas id="myCanvas" width="272" height="313"></canvas>
         <!--이제 마커이미지들 렌더링-->
         {% for places in places_sick %}
-            <img src="{%static "img/marker-res.png"%}" class="marker" id="marker_{{places.id}}">
+            <img src="{%static 'img/marker-res.png'%}" class="marker" id="marker_{{places.id}}">
         {% endfor %}
         {% for places in places_ca %}
-            <img src="{%static "img/marker-cafe.png"%}" class="marker" id="marker_{{places.id}}">
+            <img src="{%static 'img/marker-cafe.png'%}" class="marker" id="marker_{{places.id}}">
         {% endfor %}
         {% for places in places_ja %}
-            <img src="{%static "img/marker-natural.png"%}" class="marker" id="marker_{{places.id}}">
+            <img src="{%static 'img/marker-natural.png'%}" class="marker" id="marker_{{places.id}}">
         {% endfor %}
         {% for places in places_yeo %}
-            <img src="{%static "img/marker-yeo.png"%}" class="marker" id="marker_{{places.id}}">
+            <img src="{%static 'img/marker-yeo.png'%}" class="marker" id="marker_{{places.id}}">
         {% endfor %}
     </div>
     </div>

@@ -441,6 +441,12 @@
     margin:0;
 }
 
+.map{
+    position: relative;
+    width: 272;
+    height: 313;
+}
+
 /*course - search*/
 .search-modal{
     position:fixed; 
@@ -583,7 +589,7 @@ input[type="radio"]:checked{
     white-space: nowrap;
     overflow-y: scroll;
     padding-bottom: 10px;
-    opacity: 0.5;
+    position: absolute;
 }
 
 .place-list > hr{
@@ -700,4 +706,16 @@ input[type="radio"]:checked{
     width: 20px;
     height: 20px;
     padding: 0;
+}
+
+.map {
+    position: relative;
+    width: 272px;
+    height: 313px;
+}
+
+.marker {
+    position: absolute;
+    width: 22px;
+    height: 31px;
 }
