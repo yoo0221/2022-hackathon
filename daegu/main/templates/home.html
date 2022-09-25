@@ -35,8 +35,8 @@
             <h1 class="content-text">{{ hash.hash }}</h1>
             <div style="padding:1.5rem;" class="py-2">
                 <div class="content-list"> <!--overflow-x:scroll;-->
-                    {% for adminplace in hash.adminplace_set.all %}
-                        <a href="{% url 'detail' adminplace.id %}"><span class="content-img-container"><img class="content-img" src="{{ adminplace.thumbnail.url }}"></span></a>
+                    {% for place in hash.place_set.all %}
+                        <a href="{% url 'detail' place.id %}"><span class="content-img-container"><img class="content-img" src="{{ place.img.url }}"></span></a>
                     {% endfor %}
                 </div>
             </div>

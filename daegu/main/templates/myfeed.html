@@ -1,4 +1,4 @@
-{% extends 'footer.html' %}
+{% extends 'activefooter.html' %}
 {% load static %}
 
 {% block content %}
@@ -18,6 +18,20 @@
     <hr style="margin:0; color:gray;">
     </li>
 </ul>
+
+<!--tab one-->
+<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+    <div class="pic-container p-1">
+        {% for course in user.course_set.all %}
+            {% for place in course.place.all %}
+            <div class="pic"> <img src="{{place.img.url}}" alt=""> </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+    2
+</div>
 
 <script>
     const pic_tab=document.getElementById('pills-home-tab')
