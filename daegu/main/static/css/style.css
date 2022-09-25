@@ -717,3 +717,15 @@ input[type="radio"]:checked{
     height: 20px;
     padding: 0;
 }
+
+.map {
+    position: relative;
+    width: 272px;
+    height: 313px;
+}
+
+.marker {
+    position: absolute;
+    width: 22px;
+    height: 31px;
+}
