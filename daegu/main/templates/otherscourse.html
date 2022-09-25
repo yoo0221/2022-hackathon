@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--header-->
+    <div class="otherscourse-header-background"><h1 class="otherscourse-header-text">다른 사람 코스 보기</h1></div>
+
+    <!--card-->
+    <div class="otherscourse-card-box">
+        <h1 class="otherscourse-card-title">대구 핫플 완전 정복하기</h1>
+        <p class="otherscourse-card-text">순곱이네 곱창전골 → 오디너리하우스 → 이월드</p>
+        <a href="{% url 'otherscourseDetail' %}" style="color:black; text-decoration:none;">
+            <div class="otherscourse-other-user">
+                <div class="otherscourse-user-box">
+                    <img src="{% static 'img/user-img.png' %}" class="otherscourse-user-img">
+                    <h1 class="map-title otherscourse-user-id">min_ji</h1>
+                </div>
+                <img src="{% static 'img/map.png' %}" class="otherscourse-map-img">
+                <!--others-course-scrap-b0x-->
+                <div style="padding-left:16rem; padding-bottom:1rem;">
+                    <div class="d-flex align-items-center justify-content-center"><img style="width: 30px; height: 30px;" class="save-img row" id="scrap-btn-empty" src="{% static 'img/bin-scrap.png' %}"></div>
+                    <div class="d-flex align-items-center justify-content-center"><p class="save-text row" id="scrap">200</p></div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <!--footer-->
+    <div class="footer-list">
+        <span class="footer-icon"><a href="{% url 'main' %}"><img style="width:30px; height:27px;" src="{% static 'img/home.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'course' %}"><img style="width:60px; height:60px;" src="{% static 'img/location.png' %}"></a></span>
+        <span class="footer-icon"><a href="{% url 'otherscourse' %}"><img style="width:27px; height:35px;" src="{% static 'img/course.png' %}"></a></span>
+    </div>
+</body>
+</html>

@@ -71,4 +71,10 @@ def setcourse(request):
         {"places_sick" : places_sick,
         "places_ca" : places_ca,
         "places_ja" : places_ja,
-        "places_yeo" : places_yeo})
+        "places_yeo" : places_yeo}) 
+
+def otherscourse(request):
+    return render(request, 'otherscourse.html')
+
+def otherscourseDetail(request):
+    return render(request, "otherscourse-detail.html")
