@@ -19,7 +19,6 @@ def detail(request, place_id):
 
 def otherscourse(request):
     courses = Course.objects.all().order_by('scrap_cnt')
-    print(courses.place.all())
     return render(request, 'otherscourse.html', {"courses":courses})
 
 def otherscourseDetail(request):
