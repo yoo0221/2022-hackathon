@@ -182,6 +182,7 @@
     width:5rem !important; 
     height:2rem !important; 
     box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
+    margin-left:1rem!important;
 }
 
 .type-text{
@@ -421,6 +422,7 @@
     width:4.8rem!important; 
     height:2rem!important; 
     box-shadow:0px 5px 5px rgb(129, 72, 129)!important;
+    margin-left:0.2rem
 }
 
 .select-type-box-larger{
@@ -432,6 +434,7 @@
     width:6.6rem !important; 
     height:2rem !important; 
     box-shadow:0px 5px 5px rgb(129, 72, 129) !important;
+    margin-left:0.2rem
 }
 
 /*course - complete button*/
@@ -730,4 +733,8 @@ input[type="radio"]:checked{
 
 .home-body{
     margin-bottom: 6rem;
+}
+
+.click{
+    background-color:#7e4fb7!important;
 }

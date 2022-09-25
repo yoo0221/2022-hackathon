@@ -25,6 +25,7 @@ urlpatterns = [
     path('detail/<int:place_id>', views.detail, name="detail"),
     path('account/', include('account.urls')),
     path('course/', views.course, name="course"),
+    path("coursecheck/", views.coursecheck, name="coursecheck"),
     path('postcreate/<int:course_id>', views.postcreate, name="postcreate"),
     path('postdetail/<int:course_id>', views.postdetail, name="postdetail"),
     path('myfeed/', views.myfeed, name="myfeed"),
